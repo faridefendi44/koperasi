@@ -59,21 +59,21 @@
                         Pinjaman</label>
                     <input type="number" name="jumlah_pinjaman" id="nip"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Masukkan nominal simpanan pokok" required />
+                        placeholder="Masukkan nominal pinjaman Anda" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Jangka
                         Waktu</label>
                     <input type="number" name="jangka_waktu"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Masukkan jangka waktu" required />
+                        placeholder="Masukkan jangka waktu pengajuan pinjaman Anda(dalam bulan), misal 4" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Tanggal
                         Pinjaman</label>
                     <input id='test' type="text" name="tanggal_pinjaman" datepicker
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Tanggal Pinjaman" required />
+                        placeholder="Masukkan tanggal pinjaman Anda" required />
                 </div>
 
                 <div>
