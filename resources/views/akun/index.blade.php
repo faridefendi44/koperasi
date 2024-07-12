@@ -1,3 +1,4 @@
+<title>Akun</title>
 @extends('layouts.master')
 @section('content')
     <div class="w-4/5 py-10 mx-auto space-y-10">
