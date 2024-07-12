@@ -77,7 +77,7 @@
         </div>
         <div class="px-5">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.5506741832596!2d100.93846417377023!3d-0.6636574993298657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2b2180cae23113%3A0xc500e464e6997b1!2sKejaksaan%20Negeri%20Sijunjung!5e0!3m2!1sid!2sid!4v1720125963967!5m2!1sid!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7821543061264!2d100.61075817613678!3d-0.24395619975364177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd54b4b61dab573%3A0xe6b93e1b5a5ad34b!2sKejaksaan%20Negeri%20Payakumbuh!5e0!3m2!1sen!2sid!4v1720789100636!5m2!1sen!2sid"
                 class="w-full" height="450" style="border:0;" allowfullscreen="true" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
@@ -100,8 +100,8 @@
                     </g>
                 </svg>
             </h1>
-            <a target="blank" href="mailto:koperasi@gmail.com">
-                koperasi@gmail.com
+            <a target="blank" href="koperasi_knpayakumbuh@gmail.com">
+                koperasi_knpayakumbuh@gmail.com
             </a>
         </div>
     </div>
