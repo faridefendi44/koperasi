@@ -1,3 +1,4 @@
+<title>Login</title>
 @extends('layouts.app')
 @section('content')
     <div class=" h-screen  mx-auto my-auto flex justify-center font-['Poppins']">
