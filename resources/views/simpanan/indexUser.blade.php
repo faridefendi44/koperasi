@@ -1,3 +1,4 @@
+<title>Simpanan</title>
 @extends('layouts.master')
 @section('content')
     <div class="">
@@ -12,14 +13,14 @@
                 </svg>
             </h1>
             <div class="">
-                <h1>Pinjaman</h1>
+                <h1>Simpanan</h1>
             </div>
         </div>
         <div class="lg:px-10">
 
 
             <div class=" font-semibold text-center py-5">
-                <h1>Riwayat Pinjaman</h1>
+                <h1>Riwayat Simpanan</h1>
             </div>
             <div class="space-y-5 w-1/3 py-5">
                 <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
@@ -29,13 +30,13 @@
                     </h1>
                 </div>
                 <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
-                    <h1 class="font-semibold">Nip</h1>
+                    <h1 class="font-semibold">NIP</h1>
                     <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
                         {{ auth()->user()->anggota->nip }}
                     </h1>
                 </div>
                 <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
-                    <h1 class="font-semibold">Bidang</h1>
+                    <h1 class="font-semibold">Simpanan Pokok</h1>
                     <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
                         {{ 'Rp ' . number_format(auth()->user()->anggota->simpanan, 0, ',', '.') }}
                     </h1>
