@@ -1,3 +1,4 @@
+<title>Daftar</title>
 @extends('layouts.app')
 @section('content')
 <div class="mx-auto my-auto flex py-20 item-center justify-center font-['Poppins']">
