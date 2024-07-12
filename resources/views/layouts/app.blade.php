@@ -10,7 +10,7 @@
     <script src="build/assets/app-Bvkupbkq.js"></script>
     <link rel="stylesheet" href="build/assets/app-7_aeb38O.css">
     @vite('resources/css/app.css')
-    <title>Document</title>
+    <title>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</title>
 </head>
 
 <body>
