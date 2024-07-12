@@ -1,3 +1,4 @@
+<title>Angsuran</title>
 @extends('layouts.master')
 @section('content')
     <div class="">
@@ -29,9 +30,21 @@
                     </h1>
                 </div>
                 <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
-                    <h1 class="font-semibold">Nip</h1>
+                    <h1 class="font-semibold">NIP</h1>
                     <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
                         {{ auth()->user()->anggota->nip }}
+                    </h1>
+                </div>
+                {{-- <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
+                    <h1 class="font-semibold">Pangkat</h1>
+                    <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
+                        {{ auth()->user()->anggota->pangkat }}
+                    </h1>
+                </div>
+                <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
+                    <h1 class="font-semibold">Jabatan</h1>
+                    <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
+                        {{ auth()->user()->anggota->jabatan }}
                     </h1>
                 </div>
                 <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
@@ -39,7 +52,7 @@
                     <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
                         {{ 'Rp ' . number_format(auth()->user()->anggota->simpanan, 0, ',', '.') }}
                     </h1>
-                </div>
+                </div> --}}
 
             </div>
 
@@ -51,14 +64,20 @@
                             <th scope="col" class="px-6 py-3">
                                 No
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {{-- <th scope="col" class="px-6 py-3">
                                 Nomor Pinjaman
-                            </th>
-                            <th scope="col" class="px-6 py-3">
+                            </th> --}}
+                            {{-- <th scope="col" class="px-6 py-3">
                                 Nomor Anggota
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-6 py-3">
                                 Jumlah Pinjaman
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Jangka Waktu
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tanggal Pinjaman
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Jumlah Angsuran
@@ -82,14 +101,20 @@
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $loop->iteration }}
                                 </th>
-                                <td class="px-6 py-4">
+                                {{-- <td class="px-6 py-4">
                                     {{ $item->id_pinjaman }}
-                                </td>
-                                <td class="px-6 py-4">
+                                </td> --}}
+                                {{-- <td class="px-6 py-4">
                                     {{ $item->anggota->user->name }}
-                                </td>
+                                </td> --}}
                                 <td class="px-6 py-4">
                                     {{ 'Rp ' . number_format($item->pinjaman->jumlah_pinjaman, 0, ',', '.') }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->pinjaman->jangka_waktu .' bulan' }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $item->pinjaman->tanggal_pinjaman }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ 'Rp ' . number_format($totalAngsuran, 0, ',', '.') }}
