@@ -2,7 +2,7 @@
 @section('content')
     <div class="w-4/5  mx-auto space-y-10">
         <div class="mx-auto  bg-white shadow-lg rounded-lg  p-10   my-auto justify-center w-full">
-            <h1 class="text-3xl font-semibold">Tambah Anggota Koperasi</h1>
+            <h1 class="text-3xl font-semibold">Edit Anggota Koperasi</h1>
             <div class="mt-5">
                 <a href="all"
                     class="bg-[#A94438] flex space-x-3 text-md font-semibold w-fit text-center   py-3 px-5 rounded-lg">
@@ -15,65 +15,67 @@
                         </span>
                     </a>
             </div>
-            <form class="lg:w-4/5 justify-center mx-auto space-y-6 mt-10" action="{{ route('member.store') }}"
+            <form class="lg:w-4/5 justify-center mx-auto space-y-6 mt-10" action="{{ route('member.update', $member->id) }}"
                 method="POST">
                 @csrf
+                @method('PUT')
+
                 <div class="flex justify-around space-x-10">
-                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900 ">Nama
-                        Anggota</label>
-                    <select name="id_user"
-                        class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                        <option disabled>Pilih nomor anggota koperasi</option>
+                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900">Nama Anggota</label>
+                    <select name="id_user" class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option disabled>Pilih nama anggota koperasi</option>
                         @foreach ($users as $item)
-                            <option value="{{$item->id}}">{{ $item->name}}</option>
+                            <option value="{{ $item->id }}" {{ $item->id == $member->user->id ? 'selected' : '' }}>
+                                {{ $item->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
+
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">NIP</label>
-                    <input name="nip" type="text" id="nip"
+                    <input name="nip" type="text" id="nip" value="{{$member->nip}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik nip anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Golongan</label>
-                    <input name="golongan" type="text" id="golongan"
+                    <input name="golongan" type="text" id="golongan" value="{{$member->golongan}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik golongan anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Pangkat</label>
-                    <input name="pangkat" type="text" id="golongan"
+                    <input name="pangkat" type="text" id="golongan" value="{{$member->pangkat}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik pangkat anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Jabatan</label>
-                    <input name="jabatan" type="text" id="golongan"
+                    <input name="jabatan" type="text" id="golongan" value="{{$member->jabatan}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik jabatan anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Bidang</label>
-                    <input name="bidang" type="text" id="bidang"
+                    <input name="bidang" type="text" id="bidang" value="{{$member->bidang}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik bidang anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Jumlah Gaji</label>
-                    <input name="gaji" type="number" id="gaji"
+                    <input name="gaji" type="number" id="gaji" value="{{$member->gaji}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik gaji anggota" required />
                 </div>
 
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Alamat</label>
-                    <input name="alamat" type="text" id="alamat"
+                    <input name="alamat" type="text" id="alamat" value="{{$member->alamat}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Ketik alamat anggota" required />
                 </div>
 
-                <h1>** Simpanan Pokok yang wajib Anda bayarkan saat bergabung menjadi anggota koperasi sebesar Rp 50.000,-
                 </h1>
 
                 <div>
@@ -81,7 +83,7 @@
                         class="bg-[#A98F03] flex space-x-3 text-md font-semibold w-fit text-center   py-3 px-5 rounded-lg">
 
                         <span class="text-white">
-                            Daftar Anggota Koperasi
+                            Submit
                         </span>
                     </button>
                 </div>

@@ -70,7 +70,7 @@ Route::prefix('members')->group(function () {
     Route::put('/approve/{id}', [MemberController::class, 'approve'])->name('member.approve');
     Route::put('/reject/{id}', [MemberController::class, 'reject'])->name('member.reject');
     Route::get('/edit/{id}', [MemberController::class, 'edit'])->name('member.edit');
-    Route::put('/update', [MemberController::class, 'update'])->name('member.update');
+    Route::put('/update/{id}', [MemberController::class, 'update'])->name('member.update');
     Route::get('/detail/{id}', [MemberController::class, 'show'])->name('member.show');
     Route::post('/delete/{id}', [MemberController::class, 'delete'])->name('member.delete');
     Route::get('/download/{id}', [MemberController::class, 'downloadPdf'])->name('member.download');

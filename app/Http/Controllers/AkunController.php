@@ -49,27 +49,55 @@ class AkunController extends Controller
     }
 
 
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'name' => 'required',
+    //         'username' => 'required|unique:users,username,' . $id,
+    //         'no_wa' => 'nullable|string|max:255',
+    //         'email' => 'required|email|unique:users,email,' . $id,
+    //         'role' => 'required',
+    //     ]);
+    //     $user = User::findOrFail($id);
+    //     $user->name = $request->name;
+    //     $user->username = $request->username;
+    //     $user->no_wa = $request->no_wa;
+    //     $user->email = $request->email;
+    //     $user->role = $request->role;
+    //     if ($request->has('password')) {
+    //         $user->password = bcrypt($request->password);
+    //     }
+    //     $user->save();
+    //     return redirect()->route('akun.index')->with('message', 'Berhasil memperbarui akun');
+    // }
+
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'username' => 'required|unique:users,username,' . $id,
-            'no_wa' => 'string|max:255',
-            'email' => 'required|email|unique:users,email,' . $id,
-            'role' => 'required',
-        ]);
-        $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->no_wa = $request->no_wa;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        if ($request->has('password')) {
-            $user->password = bcrypt($request->password);
-        }
-        $user->save();
-        return redirect()->route('akun.index')->with('message', 'Berhasil memperbarui akun');
+{
+    $request->validate([
+        'name' => 'required',
+        'username' => 'required|unique:users,username,' . $id,
+        'no_wa' => 'nullable|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $id,
+        'role' => 'required',
+    ]);
+
+    $user = User::findOrFail($id);
+    $user->name = $request->name;
+    $user->username = $request->username;
+    $user->no_wa = $request->no_wa;
+    $user->email = $request->email;
+    $user->role = $request->role;
+
+    // Cek apakah ada input password baru
+    if ($request->filled('password')) {
+        $user->password = bcrypt($request->password);
     }
+
+    $user->save();
+
+    return redirect()->route('akun.index')->with('message', 'Berhasil memperbarui akun');
+}
+
 
 
     public function updatePassword(Request $request, $id)

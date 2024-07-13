@@ -24,18 +24,21 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Masukkan id pinjaman koperasi" required />
                 </div>
+
                 <div class="flex justify-around space-x-10">
-                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900 ">Nomor
-                        Anggota</label>
+                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900">Nama Anggota</label>
                     <select name="id_anggota" id="countries"
-                        class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                        <option disabled>Pilih nomor anggota koperasi</option>
-                        <option selected value="{{$pinjaman->anggota->id}}">{{$pinjaman->anggota->id_anggota}} - {{$pinjaman->anggota->user->name}}</option>
+                        class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <option disabled>Pilih nama anggota koperasi</option>
                         @foreach ($anggotas as $item)
-                            <option value="{{$item->id_anggota}}">{{ $item->id_anggota }} - {{ $item->user->name}}</option>
+                            <option value="{{ $item->id }}" {{ $item->id == $pinjaman->anggota->id ? 'selected' : '' }}>
+                                {{ $item->id_anggota }} - {{ $item->user->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
+
+
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Jumlah Pinjaman</label>
                     <input type="number" value="{{$pinjaman->jumlah_pinjaman}}" name="jumlah_pinjaman" id="nip"
