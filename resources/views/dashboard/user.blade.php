@@ -53,6 +53,18 @@
                         placeholder="Ketik bidang anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
+                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Pangkat</label>
+                    <input name="pangkat" type="text" id="bidang"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
+                        placeholder="Ketik pangkat anggota" required />
+                </div>
+                <div class="flex justify-around space-x-10">
+                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Jabatan</label>
+                    <input name="jabatan" type="text" id="bidang"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
+                        placeholder="Ketik jabatan anggota" required />
+                </div>
+                <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Gaji</label>
                     <input name="gaji" type="number" id="gaji"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"

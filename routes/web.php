@@ -64,6 +64,7 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('members')->group(function () {
     Route::get('/all', [MemberController::class, 'index'])->name('member.index');
+    Route::get('/search', [MemberController::class, 'search'])->name('member.search');
     Route::get('/add', [MemberController::class, 'create'])->name('member.create');
     Route::post('/store', [MemberController::class, 'store'])->name('member.store');
     Route::put('/approve/{id}', [MemberController::class, 'approve'])->name('member.approve');

@@ -12,6 +12,35 @@ use Carbon\Carbon;
 class MemberController extends Controller
 {
     //
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $validatedData = $request->validate([
+            'keyword' => 'required|string|max:255',
+        ]);
+
+        $members = Anggota::where(function ($query) use ($keyword) {
+            $query->where('nip', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('golongan', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('gaji', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('bidang', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('alamat', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('no_wa', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('simpanan', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('tanggal_masuk', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('jabatan', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('pangkat', 'LIKE', '%' . $keyword . '%');
+        })
+        ->orWhereHas('user', function ($query) use ($keyword) {
+            $query->where('name', 'LIKE', '%' . $keyword . '%');
+        })
+        ->with('user')
+        ->paginate(10);
+        return view('member.index', compact('members'));
+    }
+
     public function index(){
         $members = Anggota::paginate(10);
         return view('member.index', compact('members'));
@@ -29,6 +58,8 @@ class MemberController extends Controller
             'id_user' => 'numeric',
             'bidang' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
+            'pangkat' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
             'no_wa' => 'required|string|max:255',
             'simpanan' => 'nullable|numeric',
             'tanggal_masuk' => 'nullable|date',

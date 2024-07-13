@@ -18,6 +18,8 @@ class Anggota extends Model
         'alamat',
         'no_wa',
         'simpanan',
+        'pangkat',
+        'jabatan',
         'tanggal_masuk',
         'status',
     ];

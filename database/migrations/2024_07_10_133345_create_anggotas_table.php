@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('no_wa');
             $table->double('simpanan');
             $table->string('tanggal_masuk');
+            $table->string('pangkat');
+            $table->string('jabatan');
             $table->string('status')->default('proses');
             $table->timestamps();
         });

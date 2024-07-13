@@ -33,7 +33,7 @@
                     <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
                         <h1 class="font-semibold">Nama</h1>
                         <h1 class="flex md:text-left text-center"><span class="hidden md:block mr-5">:</span>
-                            {{ $user->name }}
+                            {{ $user->user->name }}
                         </h1>
                     </div>
                     <div class="grid md:grid-cols-2 justify-center   border-b-2 ">
