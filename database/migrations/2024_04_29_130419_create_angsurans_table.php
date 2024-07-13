@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('angsurans', function (Blueprint $table) {
             $table->id();
-            $table->string('id_angsuran');
-            $table->string('id_pinjaman');
             $table->string('id_anggota');
+            $table->string('id_pinjaman');
             $table->string('tanggal_angsuran');
             $table->double('angsuran_pokok')->nullable();
             $table->double('bunga')->nullable();

@@ -31,7 +31,7 @@ class AngsuranController extends Controller
     {
         $user = Auth::user();
 
-        $idAnggota = $user->anggota->id_anggota;
+        $idAnggota = $user->anggota->id;
         $angsurans = Angsuran::with('pinjaman', 'anggota.user')->where('id_anggota', $idAnggota)->get();
         // $angsurans = Angsuran::where('id_anggota', $idAnggota)->paginate(10);
 

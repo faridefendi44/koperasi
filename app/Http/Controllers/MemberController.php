@@ -57,7 +57,7 @@ class MemberController extends Controller
         $member = Anggota::findOrFail($id);
         return view('member.edit', compact('users', 'member'));
     }
-    
+
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -72,12 +72,10 @@ class MemberController extends Controller
             'simpanan' => 'nullable|numeric',
             'tanggal_masuk' => 'nullable|date',
         ]);
-        $anggotaCount = Anggota::count();
-        $newIdAnggota = 'A' . str_pad($anggotaCount + 1, 2, '0', STR_PAD_LEFT);
+
         if (Auth::user()->role != 'admin') {
             $validatedData['id_user'] = Auth::id();
         }
-        $validatedData['id_anggota'] = $newIdAnggota;
         $validatedData['simpanan'] = $validatedData['simpanan'] ?? 50000;
         $validatedData['tanggal_masuk'] = $validatedData['tanggal_masuk'] ?? Carbon::today()->toDateString();
         Anggota::create($validatedData);

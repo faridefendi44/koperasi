@@ -8,7 +8,6 @@ use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AngsuranController;
 use App\Http\Controllers\AkunController;
-use App\Models\Simpanan;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +33,7 @@ Route::get('/', function(){
 Route::prefix('users')->group(function () {
     Route::get('/', [DashboardController::class, 'DashboardUser'])->name('user.index');
     Route::get('/verifikasi', [DashboardController::class, 'VerifikasiUser'])->name('user.verifikasi');
-    Route::post('/store', [MemberController::class, 'store'])->name('member.store');
     Route::get('/profil', [MemberController::class, 'profil'])->name('member.profil');
-    Route::get('/edit/{id}', [MemberController::class, 'edit'])->name('member.edit');
-    Route::put('/update', [MemberController::class, 'update'])->name('member.update');
     Route::prefix('pinjaman')->group(function () {
         Route::get('/', [PinjamanController::class, 'indexUser'])->name('pinjaman.indexUser');
 
@@ -48,25 +44,18 @@ Route::prefix('users')->group(function () {
     });
     Route::prefix('angsuran')->group(function () {
         Route::get('/', [AngsuranController::class, 'indexUser'])->name('angsuran.indexUser');
-        Route::get('/download/{id}', [AngsuranController::class, 'downloadPdf'])->name('angsuran.download');
     });
 });
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'DashboardAdmin'])->name('admin.index');
     Route::post('/store', [MemberController::class, 'store'])->name('member.store');
-    Route::get('/profil', [MemberController::class, 'profil'])->name('member.profil');
-    Route::get('/edit/{id}', [MemberController::class, 'edit'])->name('member.edit');
-    Route::put('/update', [MemberController::class, 'update'])->name('member.update');
-    Route::get('/detail/{id}', [MemberController::class, 'show'])->name('member.show');
-    Route::get('/download/{id}', [MemberController::class, 'downloadPdf'])->name('member.download');
 });
 
 Route::prefix('members')->group(function () {
     Route::get('/all', [MemberController::class, 'index'])->name('member.index');
     Route::get('/search', [MemberController::class, 'search'])->name('member.search');
     Route::get('/add', [MemberController::class, 'create'])->name('member.create');
-    Route::post('/store', [MemberController::class, 'store'])->name('member.store');
     Route::put('/approve/{id}', [MemberController::class, 'approve'])->name('member.approve');
     Route::put('/reject/{id}', [MemberController::class, 'reject'])->name('member.reject');
     Route::get('/edit/{id}', [MemberController::class, 'edit'])->name('member.edit');
@@ -80,7 +69,8 @@ Route::prefix('simpanan')->group(function () {
     Route::get('/add', [SimpananController::class, 'create'])->name('simpanan.create');
     Route::post('/store', [SimpananController::class, 'store'])->name('simpanan.store');
     Route::get('/edit/{id}', [SimpananController::class, 'edit'])->name('simpanan.edit');
-    Route::put('/update', [SimpananController::class, 'update'])->name('simpanan.update');
+    Route::put('/update/{id}', [SimpananController::class, 'update'])->name('simpanan.update');
+    Route::put('/status/{id}', [SimpananController::class, 'status'])->name('simpanan.status');
     Route::get('/detail/{id}', [SimpananController::class, 'show'])->name('simpanan.show');
     Route::post('/delete/{id}', [SimpananController::class, 'delete'])->name('simpanan.delete');
     Route::get('/download/{id}', [SimpananController::class, 'downloadPdf'])->name('simpanan.download');

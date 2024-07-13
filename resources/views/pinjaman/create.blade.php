@@ -23,17 +23,10 @@
             </div>
             <form class="py-10 space-y-5" action="{{ route('pinjaman.store') }}" method="POST">
                 @csrf
-                <div class="flex justify-around space-x-10">
-                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Nomor
-                        Pinjaman</label>
-                    <input type="text" name="id_pinjaman"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Masukkan id pinjaman koperasi" required />
-                </div>
+
                 @if (auth()->user()->role != 'admin')
                 <div class="flex justify-around space-x-10">
-                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Nomor
-                        Pinjaman</label>
+                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Nama Anggota</label>
                         <input type="text" name="id_anggota" value="{{auth()->user()->anggota->id_anggota}}"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="" required />
@@ -41,13 +34,13 @@
 
                 @else
                 <div class="flex justify-around space-x-10">
-                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900 ">Nomor
+                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900 ">Nama
                         Anggota</label>
                     <select name="id_anggota" id="countries"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                         <option disabled>Pilih nomor anggota koperasi</option>
                         @foreach ($anggotas as $item)
-                            <option value="{{ $item->id_anggota }}">{{ $item->id_anggota }} - {{ $item->user->name }}
+                            <option value="{{ $item->id }}">{{ $item->nip }} - {{ $item->user->name }}
                             </option>
                         @endforeach
                     </select>
@@ -71,7 +64,7 @@
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Tanggal
                         Pinjaman</label>
-                    <input id='test' type="text" name="tanggal_pinjaman" datepicker
+                    <input  type="date" name="tanggal_pinjaman"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Masukkan tanggal pinjaman Anda" required />
                 </div>
@@ -101,14 +94,4 @@
             </form>
         </div>
     </div>
-
-    <script>
-        const datapicker = document.getElementById('test');
-        new Datepicker(datapicker, {
-            todayHighlight: true,
-            minDate: new Date()
-        }); <
-        <
-        script src = "https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" >
-    </script>
 @endsection

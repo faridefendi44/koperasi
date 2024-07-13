@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Permohonan Pinjaman</title>
+    <link rel="stylesheet" href="assets/library/tailwind.css">
+
+</head>
     <style>
-        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
         table {
             width: 100%;
         }
@@ -15,7 +17,6 @@
             text-align: center;
         }
     </style>
-</head>
 <body class="">
     <div class="l mx-auto">
         <div class="text-center">

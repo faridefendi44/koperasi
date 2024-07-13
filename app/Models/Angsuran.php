@@ -9,7 +9,6 @@ class Angsuran extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id_angsuran',
         'id_pinjaman',
         'id_anggota',
         'tanggal_angsuran',
@@ -19,9 +18,9 @@ class Angsuran extends Model
         'total_angsuran',
     ];
     public function anggota(){
-        return $this->belongsTo(Anggota::class, 'id_anggota', 'id_anggota');
+        return $this->belongsTo(Anggota::class, 'id_anggota', 'id');
     }
     public function pinjaman(){
-        return $this->belongsTo(Pinjaman::class, 'id_pinjaman', 'id_pinjaman');
+        return $this->belongsTo(Pinjaman::class, 'id_pinjaman', 'id');
     }
 }

@@ -53,7 +53,7 @@
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Tanggal Pinjaman</label>
-                    <input id='test' type="text" value="{{$pinjaman->tanggal_pinjaman}}" name="tanggal_pinjaman" datepicker
+                    <input  type="date" value="{{$pinjaman->tanggal_pinjaman}}" name="tanggal_pinjaman" 
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Tanggal Pinjaman" required />
                 </div>
@@ -80,14 +80,4 @@
             </form>
         </div>
     </div>
-
-    <script>
-        const datapicker = document.getElementById('test');
-        new Datepicker(datapicker, {
-            todayHighlight: true,
-            minDate: new Date()
-        }); <
-        <
-        script src = "https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" >
-    </script>
 @endsection

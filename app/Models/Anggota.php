@@ -10,7 +10,6 @@ class Anggota extends Model
     use HasFactory;
     protected $fillable = [
         'id_user',
-        'id_anggota',
         'nip',
         'golongan',
         'gaji',
@@ -25,7 +24,10 @@ class Anggota extends Model
     public function user(){
         return $this->belongsTo(User::class, 'id_user', 'id');
     }
-    public function simpanan(){
-        return $this->hasMany(Simpanan::class, 'id_anggota');
+    public function simpanans(){
+        return $this->hasMany(Simpanan::class, 'id_anggota', 'id');
+    }
+    public function angsurans(){
+        return $this->hasMany(Simpanan::class, 'id_anggota', 'id');
     }
 }

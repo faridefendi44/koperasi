@@ -84,7 +84,6 @@ class AkunController extends Controller
     $user->email = $request->email;
     $user->role = $request->role;
 
-    // Cek apakah ada input password baru
     if ($request->filled('password')) {
         $user->password = bcrypt($request->password);
     }

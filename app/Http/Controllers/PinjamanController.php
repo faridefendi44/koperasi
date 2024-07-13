@@ -33,7 +33,7 @@ class PinjamanController extends Controller
     {
         $user = Auth::user();
 
-        $idAnggota = $user->anggota->id_anggota;
+        $idAnggota = $user->anggota->id;
 
         $pinjamans = Pinjaman::where('id_anggota', $idAnggota)->paginate(10);
 
@@ -51,7 +51,6 @@ class PinjamanController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id_pinjaman' => 'required|string|max:255',
             'id_anggota' => 'required|string|max:255',
             'jangka_waktu' => 'numeric',
             'jumlah_pinjaman' => 'numeric',
@@ -79,8 +78,7 @@ class PinjamanController extends Controller
             $bunga = $jumlahSisa * 0.01;
             $totalAngsuran = $angsuranPokok + $bunga;
             $angsuranData[] = [
-                'id_angsuran' => $pinjaman->id_pinjaman,
-                'id_pinjaman' => $pinjaman->id_pinjaman,
+                'id_pinjaman' => $pinjaman->id,
                 'id_anggota' => $pinjaman->id_anggota,
                 'tanggal_angsuran' => $tanggalAngsuran,
                 'angsuran_pokok' => $angsuranPokok,

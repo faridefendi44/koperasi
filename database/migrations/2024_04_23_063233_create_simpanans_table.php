@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('simpanans', function (Blueprint $table) {
             $table->id();
             $table->string('id_anggota');
-            $table->string('id_simpanan');
             $table->string('tanggal_simpanan');
             $table->double('simpanan_wajib')->default(150000);
             $table->string('status')->default('belum lunas');

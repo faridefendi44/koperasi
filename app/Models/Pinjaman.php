@@ -9,7 +9,6 @@ class Pinjaman extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'id_pinjaman',
         'id_anggota',
         'jangka_waktu',
         'jumlah_pinjaman',
@@ -18,9 +17,9 @@ class Pinjaman extends Model
         'status_pelunasan',
     ];
     public function anggota(){
-        return $this->belongsTo(Anggota::class, 'id_anggota', 'id_anggota');
+        return $this->belongsTo(Anggota::class, 'id_anggota', 'id');
     }
     public function angsuran(){
-        return $this->hasMany(Angsuran::class, 'id_pinjaman', 'id_pinjaman');
+        return $this->hasMany(Angsuran::class, 'id_pinjaman', 'id');
     }
 }

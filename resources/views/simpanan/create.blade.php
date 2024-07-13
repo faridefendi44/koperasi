@@ -19,21 +19,15 @@
             </div>
             <form class="py-10 space-y-5" action="{{route('simpanan.store')}}" method="POST">
                 @csrf
+
                 <div class="flex justify-around space-x-10">
-                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Nomor
-                        Simpanan</label>
-                    <input type="text" id="nomor_anggota" name="id_simpanan"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Masukkan nomor simpanan koperasi" required />
-                </div>
-                <div class="flex justify-around space-x-10">
-                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900 ">Nomor
+                    <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900 ">Nama
                         Anggota</label>
                     <select name="id_anggota" id="countries"
                         class="bg-gray-50 h-12 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                         <option disabled>Pilih nomor anggota koperasi</option>
                         @foreach ($anggotas as $item)
-                            <option value="{{$item->id_anggota}}">{{ $item->id_anggota }} - {{ $item->user->name}}</option>
+                            <option value="{{$item->id}}">{{ $item->nip }} - {{ $item->user->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -53,7 +47,7 @@
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Tanggal Simpanan</label>
-                    <input id='test' type="text" name="tanggal_simpanan" datepicker
+                    <input type="date" name="tanggal_simpanan" 
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Tanggal Simpanan" required />
                 </div>
@@ -85,13 +79,5 @@
         </div>
     </div>
 
-    <script>
-        const datapicker = document.getElementById('test');
-        new Datepicker(datapicker, {
-            todayHighlight: true,
-            minDate: new Date()
-        }); <
-        <
-        script src = "https://unpkg.com/flowbite@1.5.3/dist/flowbite.js" >
-    </script>
+
 @endsection
