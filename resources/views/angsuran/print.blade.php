@@ -16,16 +16,11 @@
             margin-top: 10px;
         }
 
-        table,
-        th,
-        td {
-            border: 1px solid black;
-        }
+       
 
         th,
         td {
             padding: 5px;
-            text-align: center;
         }
 
         th {
@@ -36,13 +31,12 @@
             text-align: center;
 
         }
+
         .signature {
             height: 100px;
             vertical-align: bottom;
             text-align: center;
         }
-
-
     </style>
 </head>
 
@@ -51,26 +45,45 @@
         <h5>DAFTAR ANGSURAN PINJAMAN KOPERASI</h5>
         <p>KEJAKSAAN NEGERI PAYAKUMBUH</p>
     </div>
-    <p><strong>Nama:</strong> {{ $pinjamans->anggota->user->name }}</p>
-    <p><strong>Jumlah Pinjaman:</strong>{{ 'Rp ' . number_format($pinjamans->jumlah_pinjaman, 0, ',', '.') }}
-    </p>
-    <p><strong>Jangka Waktu:</strong>{{ $pinjamans->jangka_waktu }}</p>
-    <p><strong>Angsuran Pokok:</strong>{{ 'Rp ' . number_format($angsuranPokok, 0, ',', '.') }}</p>
-    <p><strong>Bulan
-            Pinjaman:</strong>{{ \Carbon\Carbon::parse($pinjamans->created_at)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat(' MMMM YYYY') }}
-    </p>
-    <p><strong>Cicilan Pertama:</strong>
-        {{ \Carbon\Carbon::parse($cicilanPertama)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat(' MMMM YYYY') }}
-    <table>
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Jumlah Sisa</th>
-                <th>Jumlah Cicilan</th>
-                <th>Bunga</th>
-                <th>Jumlah</th>
-                <th>Kett</th>
-            </tr>
+    <table style="width: 50%; border: none;">
+        <tr>
+            <td style="width: 150px;"><strong>Nama</strong></td>
+            <td>: {{ $pinjamans->anggota->user->name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Jumlah Pinjaman</strong></td>
+            <td>: {{ 'Rp ' . number_format($pinjamans->jumlah_pinjaman, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td><strong>Jangka Waktu</strong></td>
+            <td>: {{ $pinjamans->jangka_waktu }}</td>
+        </tr>
+        <tr>
+            <td><strong>Angsuran Pokok</strong></td>
+            <td>: {{ 'Rp ' . number_format($angsuranPokok, 0, ',', '.') }}</td>
+        </tr>
+        <tr>
+            <td><strong>Bulan Pinjaman</strong></td>
+            <td>: {{ \Carbon\Carbon::parse($pinjamans->created_at)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('MMMM YYYY') }}
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Cicilan Pertama</strong></td>
+            <td>: {{ \Carbon\Carbon::parse($cicilanPertama)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('MMMM YYYY') }}
+            </td>
+        </tr>
+    </table>
+
+    <table style="border: 1px solid black;">
+        style="border: 1px solid black;"ead>
+        <tr>
+            <th style="text-align: center; border: 1px solid black;">No</th>
+            <th style="text-align: center; border: 1px solid black;">Jumlah Sisa</th>
+            <th style="text-align: center; border: 1px solid black;">Jumlah Cicilan</th>
+            <th style="text-align: center; border: 1px solid black;">Bunga</th>
+            <th style="text-align: center; border: 1px solid black;">Jumlah</th>
+            <th style="text-align: center; border: 1px solid black;">Kett</th>
+        </tr>
         </thead>
 
         <tbody>
@@ -90,23 +103,24 @@
                 @endphp
 
                 <tr class="bg-[#D9D9D9] border-b">
-                    <th scope="row" class="">
+                    <th style='text-align: center; style="border: 1px solid black;"' scope="row"
+                        class="">
                         {{ $loop->iteration }}
                     </th>
 
-                    <td class="">
+                    <td style="text-align: center; border: 1px solid black;" class="">
                         {{ 'Rp ' . number_format($angsuran->jumlah_sisa, 0, ',', '.') }}
                     </td>
-                    <td class="">
+                    <td style="text-align: center; border: 1px solid black;" class="">
                         {{ 'Rp ' . number_format($angsuran->angsuran_pokok, 0, ',', '.') }}
                     </td>
-                    <td class="">
+                    <td style="text-align: center; border: 1px solid black;" class="">
                         {{ 'Rp ' . number_format($angsuran->bunga, 0, ',', '.') }}
                     </td>
-                    <td class="">
+                    <td style="text-align: center; border: 1px solid black;" class="">
                         {{ 'Rp ' . number_format($angsuran->total_angsuran, 0, ',', '.') }}
                     </td>
-                    <td class="px-6 py-4">
+                    <td style="text-align: center; border: 1px solid black;" class="px-6 py-4">
                         {{ \Carbon\Carbon::parse($angsuran->tanggal_angsuran)->format('m/Y') }}
                     </td>
 
@@ -115,35 +129,35 @@
         </tbody>
         <tfoot>
             <tr class="">
-                <th scope="row" class="">
+                <th style="text-align: center; border: 1px solid black;" scope="row" class="">
                     Total
                 </th>
-                <td class="">
+                <td style="text-align: center; border: 1px solid black;" class="">
                     {{-- {{ 'Rp ' . number_format($totalJumlahSisa, 0, ',', '.') }} --}}
                 </td>
-                <td class="">
+                <td style="text-align: center; border: 1px solid black;" class="">
                     {{ 'Rp ' . number_format($totalAngsuranPokok, 0, ',', '.') }}
                 </td>
-                <td class="">
+                <td style="text-align: center; border: 1px solid black;" class="">
                     {{ 'Rp ' . number_format($totalBunga, 0, ',', '.') }}
                 </td>
-                <td class="">
+                <td style="text-align: center; border: 1px solid black;" class="">
                     {{ 'Rp ' . number_format($totalAngsuran, 0, ',', '.') }}
                 </td>
-                <td class="">
+                <td style="text-align: center; border: 1px solid black;" class="">
                     <!-- Kosong atau teks yang diinginkan -->
                 </td>
             </tr>
         </tfoot>
         <tfoot>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                {{ 'Rp ' . number_format($totalAngsuran - 200000, 0, ',', '.') }}
+            <td style="text-align: center; border: 1px solid black;"></td>
+            <td style="text-align: center; border: 1px solid black;"></td>
+            <td style="text-align: center; border: 1px solid black;"></td>
+            <td style="text-align: center; border: 1px solid black;"></td>
+            <td style="text-align: center; border: 1px solid black;">
+                {{ 'Rp ' . number_format($pinjamans->jumlah_pinjaman - 200000, 0, ',', '.') }}
             </td>
-                        <td></td>
+            <td style="text-align: center; border: 1px solid black;"></td>
         </tfoot>
 
     </table>
@@ -154,7 +168,7 @@
                 <td class="signature">
                     <p>Peminjam</p>
                     <div class="" style="margin-top: 60px;">
-                        <p class="font-bold">{{$pinjamans->anggota->user->name}}</p>
+                        <p class="font-bold">{{ $pinjamans->anggota->user->name }}</p>
                     </div>
                 </td>
                 <td class="signature">

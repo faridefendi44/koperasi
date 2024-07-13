@@ -222,64 +222,65 @@
                     </a>
                 </li>
                 @if ($user->anggota && $user->anggota->status !== 'proses')
-                <li>
-                    <a href="{{ url('users/simpanan') }}"
-                        class="parent  {{ Request::path() == 'users/simpanan' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">
-                        <h1
-                            class="{{ Request::path() == 'users/simpanan' ? 'active' : 'opacity-0' }}  bg-red-400bg-[#345C6D]    w-1 h-full  absolute left-0 child">
-                        </h1>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_79_186)">
+                    <li>
+                        <a href="{{ url('users/simpanan') }}"
+                            class="parent  {{ Request::path() == 'users/simpanan' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">
+                            <h1
+                                class="{{ Request::path() == 'users/simpanan' ? 'active' : 'opacity-0' }}  bg-red-400bg-[#345C6D]    w-1 h-full  absolute left-0 child">
+                            </h1>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_79_186)">
+                                    <path
+                                        d="M12.75 2.25C12.75 1.65326 12.9871 1.08097 13.409 0.65901C13.831 0.237053 14.4033 0 15 0L21 0C21.7956 0 22.5587 0.316071 23.1213 0.87868C23.6839 1.44129 24 2.20435 24 3V21C24 21.7956 23.6839 22.5587 23.1213 23.1213C22.5587 23.6839 21.7956 24 21 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.316071 22.5587 0 21.7956 0 21V3C0 2.20435 0.316071 1.44129 0.87868 0.87868C1.44129 0.316071 2.20435 0 3 0L12 0C11.529 0.627 11.25 1.4055 11.25 2.25V13.9395L7.281 9.969C7.21127 9.89927 7.12848 9.84395 7.03738 9.80622C6.94627 9.76848 6.84862 9.74905 6.75 9.74905C6.65138 9.74905 6.55373 9.76848 6.46262 9.80622C6.37152 9.84395 6.28873 9.89927 6.219 9.969C6.14927 10.0387 6.09395 10.1215 6.05621 10.2126C6.01848 10.3037 5.99905 10.4014 5.99905 10.5C5.99905 10.5986 6.01848 10.6963 6.05621 10.7874C6.09395 10.8785 6.14927 10.9613 6.219 11.031L11.469 16.281C11.5387 16.3508 11.6214 16.4063 11.7125 16.4441C11.8037 16.4819 11.9013 16.5013 12 16.5013C12.0987 16.5013 12.1963 16.4819 12.2874 16.4441C12.3786 16.4063 12.4613 16.3508 12.531 16.281L17.781 11.031C17.9218 10.8902 18.0009 10.6992 18.0009 10.5C18.0009 10.3008 17.9218 10.1098 17.781 9.969C17.6402 9.82817 17.4492 9.74905 17.25 9.74905C17.0508 9.74905 16.8598 9.82817 16.719 9.969L12.75 13.9395V2.25Z"
+                                        fill="black" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_79_186">
+                                        <rect width="24" height="24" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+
+                            <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Simpanan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('users/pinjaman') }}"
+                            class="parent  {{ Request::path() == 'users/pinjaman' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">
+                            <h1
+                                class="{{ Request::path() == 'users/pinjaman' ? 'active' : 'opacity-0' }}  bg-red-400bg-[#345C6D]    w-1 h-full  absolute left-0 child">
+                            </h1>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path
-                                    d="M12.75 2.25C12.75 1.65326 12.9871 1.08097 13.409 0.65901C13.831 0.237053 14.4033 0 15 0L21 0C21.7956 0 22.5587 0.316071 23.1213 0.87868C23.6839 1.44129 24 2.20435 24 3V21C24 21.7956 23.6839 22.5587 23.1213 23.1213C22.5587 23.6839 21.7956 24 21 24H3C2.20435 24 1.44129 23.6839 0.87868 23.1213C0.316071 22.5587 0 21.7956 0 21V3C0 2.20435 0.316071 1.44129 0.87868 0.87868C1.44129 0.316071 2.20435 0 3 0L12 0C11.529 0.627 11.25 1.4055 11.25 2.25V13.9395L7.281 9.969C7.21127 9.89927 7.12848 9.84395 7.03738 9.80622C6.94627 9.76848 6.84862 9.74905 6.75 9.74905C6.65138 9.74905 6.55373 9.76848 6.46262 9.80622C6.37152 9.84395 6.28873 9.89927 6.219 9.969C6.14927 10.0387 6.09395 10.1215 6.05621 10.2126C6.01848 10.3037 5.99905 10.4014 5.99905 10.5C5.99905 10.5986 6.01848 10.6963 6.05621 10.7874C6.09395 10.8785 6.14927 10.9613 6.219 11.031L11.469 16.281C11.5387 16.3508 11.6214 16.4063 11.7125 16.4441C11.8037 16.4819 11.9013 16.5013 12 16.5013C12.0987 16.5013 12.1963 16.4819 12.2874 16.4441C12.3786 16.4063 12.4613 16.3508 12.531 16.281L17.781 11.031C17.9218 10.8902 18.0009 10.6992 18.0009 10.5C18.0009 10.3008 17.9218 10.1098 17.781 9.969C17.6402 9.82817 17.4492 9.74905 17.25 9.74905C17.0508 9.74905 16.8598 9.82817 16.719 9.969L12.75 13.9395V2.25Z"
+                                    d="M11.25 6H9C7.114 6 6.172 6 5.586 6.586C5 7.172 5 8.114 5 10V16.25H19V10C19 8.114 19 7.172 18.414 6.586C17.828 6 16.886 6 15 6H12.75V10.973L13.43 10.179C13.4941 10.1041 13.5723 10.0426 13.6601 9.99802C13.748 9.95339 13.8438 9.9265 13.942 9.91888C14.0403 9.91127 14.139 9.92308 14.2327 9.95364C14.3264 9.9842 14.4131 10.0329 14.488 10.097C14.5629 10.1611 14.6244 10.2393 14.669 10.3271C14.7136 10.415 14.7405 10.5108 14.7481 10.609C14.7557 10.7073 14.7439 10.806 14.7134 10.8997C14.6828 10.9934 14.6341 11.0801 14.57 11.155L12.57 13.488C12.4996 13.5703 12.4122 13.6364 12.3138 13.6818C12.2154 13.7271 12.1083 13.7506 12 13.7506C11.8917 13.7506 11.7846 13.7271 11.6862 13.6818C11.5878 13.6364 11.5004 13.5703 11.43 13.488L9.43 11.155C9.36592 11.0801 9.3172 10.9934 9.28664 10.8997C9.25608 10.806 9.24427 10.7073 9.25188 10.609C9.2595 10.5108 9.28639 10.415 9.33102 10.3271C9.37565 10.2393 9.43715 10.1611 9.512 10.097C9.58685 10.0329 9.6736 9.9842 9.76728 9.95364C9.86096 9.92308 9.95974 9.91127 10.058 9.91888C10.1562 9.9265 10.252 9.95339 10.3399 9.99802C10.4277 10.0426 10.5059 10.1041 10.57 10.179L11.25 10.973V6ZM5.03 17.75H18.97C18.918 18.54 18.781 19.047 18.414 19.414C17.828 20 16.886 20 15 20H9C7.114 20 6.172 20 5.586 19.414C5.219 19.047 5.081 18.541 5.03 17.75Z"
                                     fill="black" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_79_186">
-                                    <rect width="24" height="24" fill="white" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-
-
-                        <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Simpanan</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('users/pinjaman') }}"
-                        class="parent  {{ Request::path() == 'users/pinjaman' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">
-                        <h1
-                            class="{{ Request::path() == 'users/pinjaman' ? 'active' : 'opacity-0' }}  bg-red-400bg-[#345C6D]    w-1 h-full  absolute left-0 child">
-                        </h1>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M11.25 6H9C7.114 6 6.172 6 5.586 6.586C5 7.172 5 8.114 5 10V16.25H19V10C19 8.114 19 7.172 18.414 6.586C17.828 6 16.886 6 15 6H12.75V10.973L13.43 10.179C13.4941 10.1041 13.5723 10.0426 13.6601 9.99802C13.748 9.95339 13.8438 9.9265 13.942 9.91888C14.0403 9.91127 14.139 9.92308 14.2327 9.95364C14.3264 9.9842 14.4131 10.0329 14.488 10.097C14.5629 10.1611 14.6244 10.2393 14.669 10.3271C14.7136 10.415 14.7405 10.5108 14.7481 10.609C14.7557 10.7073 14.7439 10.806 14.7134 10.8997C14.6828 10.9934 14.6341 11.0801 14.57 11.155L12.57 13.488C12.4996 13.5703 12.4122 13.6364 12.3138 13.6818C12.2154 13.7271 12.1083 13.7506 12 13.7506C11.8917 13.7506 11.7846 13.7271 11.6862 13.6818C11.5878 13.6364 11.5004 13.5703 11.43 13.488L9.43 11.155C9.36592 11.0801 9.3172 10.9934 9.28664 10.8997C9.25608 10.806 9.24427 10.7073 9.25188 10.609C9.2595 10.5108 9.28639 10.415 9.33102 10.3271C9.37565 10.2393 9.43715 10.1611 9.512 10.097C9.58685 10.0329 9.6736 9.9842 9.76728 9.95364C9.86096 9.92308 9.95974 9.91127 10.058 9.91888C10.1562 9.9265 10.252 9.95339 10.3399 9.99802C10.4277 10.0426 10.5059 10.1041 10.57 10.179L11.25 10.973V6ZM5.03 17.75H18.97C18.918 18.54 18.781 19.047 18.414 19.414C17.828 20 16.886 20 15 20H9C7.114 20 6.172 20 5.586 19.414C5.219 19.047 5.081 18.541 5.03 17.75Z"
-                                fill="black" />
-                            <path
-                                d="M5.88899 3H18.11C20.26 3 22 4.8 22 7.02C22 8.31 21.413 9.457 20.5 10.193V9.911C20.5 9.045 20.5 8.251 20.413 7.606C20.318 6.895 20.093 6.143 19.475 5.526C18.857 4.907 18.105 4.682 17.395 4.586C16.749 4.5 15.955 4.5 15.089 4.5H8.90999C8.04499 4.5 7.25099 4.5 6.60599 4.587C5.89499 4.682 5.14299 4.907 4.52599 5.525C3.90699 6.143 3.68199 6.895 3.58599 7.605C3.49999 8.251 3.49999 9.045 3.49999 9.911V10.193C3.0287 9.80986 2.6493 9.32593 2.38971 8.77682C2.13012 8.2277 1.99695 7.62737 1.99999 7.02C1.99999 4.8 3.74099 3 5.88899 3Z"
-                                fill="black" />
-                        </svg>
-                        <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Pinjaman</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('users/angsuran') }}"
-                        class="parent  {{ Request::path() == 'users/angsuran' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">
-                        <h1
-                            class="{{ Request::path() == 'users/angsuran' ? 'active' : 'opacity-0' }}  bg-red-400bg-[#345C6D]    w-1 h-full  absolute left-0 child">
-                        </h1>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M5.25 4.5C4.25544 4.5 3.30161 4.89509 2.59835 5.59835C1.89509 6.30161 1.5 7.25544 1.5 8.25V9H22.5V8.25C22.5 7.25544 22.1049 6.30161 21.4016 5.59835C20.6984 4.89509 19.7446 4.5 18.75 4.5H5.25ZM22.5 10.5H1.5V15.75C1.5 16.7446 1.89509 17.6984 2.59835 18.4017C3.30161 19.1049 4.25544 19.5 5.25 19.5H18.75C19.7446 19.5 20.6984 19.1049 21.4016 18.4017C22.1049 17.6984 22.5 16.7446 22.5 15.75V10.5ZM15.75 15H18.75C18.9489 15 19.1397 15.079 19.2803 15.2197C19.421 15.3603 19.5 15.5511 19.5 15.75C19.5 15.9489 19.421 16.1397 19.2803 16.2803C19.1397 16.421 18.9489 16.5 18.75 16.5H15.75C15.5511 16.5 15.3603 16.421 15.2197 16.2803C15.079 16.1397 15 15.9489 15 15.75C15 15.5511 15.079 15.3603 15.2197 15.2197C15.3603 15.079 15.5511 15 15.75 15Z"
-                                fill="black" />
-                        </svg>
-                        <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Angsuran</span>
-                    </a>
-                </li>
+                                <path
+                                    d="M5.88899 3H18.11C20.26 3 22 4.8 22 7.02C22 8.31 21.413 9.457 20.5 10.193V9.911C20.5 9.045 20.5 8.251 20.413 7.606C20.318 6.895 20.093 6.143 19.475 5.526C18.857 4.907 18.105 4.682 17.395 4.586C16.749 4.5 15.955 4.5 15.089 4.5H8.90999C8.04499 4.5 7.25099 4.5 6.60599 4.587C5.89499 4.682 5.14299 4.907 4.52599 5.525C3.90699 6.143 3.68199 6.895 3.58599 7.605C3.49999 8.251 3.49999 9.045 3.49999 9.911V10.193C3.0287 9.80986 2.6493 9.32593 2.38971 8.77682C2.13012 8.2277 1.99695 7.62737 1.99999 7.02C1.99999 4.8 3.74099 3 5.88899 3Z"
+                                    fill="black" />
+                            </svg>
+                            <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Pinjaman</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('users/angsuran') }}"
+                            class="parent  {{ Request::path() == 'users/angsuran' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">
+                            <h1
+                                class="{{ Request::path() == 'users/angsuran' ? 'active' : 'opacity-0' }}  bg-red-400bg-[#345C6D]    w-1 h-full  absolute left-0 child">
+                            </h1>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.25 4.5C4.25544 4.5 3.30161 4.89509 2.59835 5.59835C1.89509 6.30161 1.5 7.25544 1.5 8.25V9H22.5V8.25C22.5 7.25544 22.1049 6.30161 21.4016 5.59835C20.6984 4.89509 19.7446 4.5 18.75 4.5H5.25ZM22.5 10.5H1.5V15.75C1.5 16.7446 1.89509 17.6984 2.59835 18.4017C3.30161 19.1049 4.25544 19.5 5.25 19.5H18.75C19.7446 19.5 20.6984 19.1049 21.4016 18.4017C22.1049 17.6984 22.5 16.7446 22.5 15.75V10.5ZM15.75 15H18.75C18.9489 15 19.1397 15.079 19.2803 15.2197C19.421 15.3603 19.5 15.5511 19.5 15.75C19.5 15.9489 19.421 16.1397 19.2803 16.2803C19.1397 16.421 18.9489 16.5 18.75 16.5H15.75C15.5511 16.5 15.3603 16.421 15.2197 16.2803C15.079 16.1397 15 15.9489 15 15.75C15 15.5511 15.079 15.3603 15.2197 15.2197C15.3603 15.079 15.5511 15 15.75 15Z"
+                                    fill="black" />
+                            </svg>
+                            <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Angsuran</span>
+                        </a>
+                    </li>
                 @endif
+
 
             @endif
             <li>
@@ -301,9 +302,70 @@
                                 stroke="black" stroke-width="1.5" stroke-linecap="round" />
                         </g>
                     </svg>
-                    <span id="show"
-                        class="text-[12px] md:text-[18px] ml-4 ">{{ Auth::check() ? 'Logout' : 'Login' }}</span>
+                    <span id="show" class="text-[12px] md:text-[18px] ml-4 " data-modal-target="logoutModal"
+                        data-modal-toggle="logoutModal" type="button">
+                        {{ Auth::check() ? 'Logout' : 'Login' }}
+                    </span>
+
                 </a>
+            </li>
+            <li>
+                <button class="parent -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer top-10 font-semibold shadow relative" id="logoutModal" data-modal-target="logoutModal" data-modal-toggle="logoutModal"
+                    type="button">
+                    <svg width="35" height="35" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" stroke="#fff">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path
+                                d="M2.00098 11.999L16.001 11.999M16.001 11.999L12.501 8.99902M16.001 11.999L12.501 14.999"
+                                stroke="black" stroke-width="1.5" />
+                            <path
+                                d="M9.00195 7C9.01406 4.82497 9.11051 3.64706 9.87889 2.87868C10.7576 2 12.1718 2 15.0002 2L16.0002 2C18.8286 2 20.2429 2 21.1215 2.87868C22.0002 3.75736 22.0002 5.17157 22.0002 8L22.0002 16C22.0002 18.8284 22.0002 20.2426 21.1215 21.1213C20.3531 21.8897 19.1752 21.9862 17 21.9983M9.00195 17C9.01406 19.175 9.11051 20.3529 9.87889 21.1213C10.5202 21.7626 11.4467 21.9359 13 21.9827"
+                                stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                        </g>
+                    </svg>
+                    <span > {{ Auth::check() ? 'Logout' : 'Login' }}
+                    </span>
+                </button>
+
+                <!-- Modal for Logout -->
+                <div id="logoutModal" tabindex="-1" aria-hidden="true"
+                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                        <!-- Modal content -->
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <!-- Modal header -->
+                            <div
+                                class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                <h3 class="font-semibold text-gray-900 dark:text-white">
+                                    Konfirmasi Logout
+                                </h3>
+                                <button type="button"
+                                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                    data-modal-hide="logoutModal">
+                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 14 14">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                    </svg>
+                                    <span class="sr-only">Close modal</span>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-4 md:p-5">
+                                <p>Apakah Anda yakin ingin logout?</p>
+                                <form action="" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="w-full mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        Logout
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -329,6 +391,7 @@
     const toggleSidebar = document.getElementById('toggleSidebar');
     const sidebarMenu = document.getElementById('sidebarMenu');
     const sidebarText = document.querySelectorAll('#sidebarMenu > li > a > span, #greetingText');
+    const sidebarlogout = document.querySelectorAll('#sidebarMenu > li > button > span, #greetingText');
     let isOpen = true;
 
     function updateSidebarWidth() {
@@ -339,12 +402,14 @@
             sidebar.style.zIndex = '10';
             sidebarMenu.classList.add('show');
             sidebarText.forEach(text => text.classList.remove('hide'));
+            sidebarlogout.forEach(text => text.classList.remove('hide'));
         } else {
             sidebar.style.width = '70px';
             sidebar.style.left = screenWidth < 668 ? '0px' : '0px';
             sidebar.style.zIndex = '200';
             sidebarMenu.classList.remove('show');
             sidebarText.forEach(text => text.classList.add('hide'));
+            sidebarLogout.forEach(text => text.classList.add('hide'));
         }
     }
 

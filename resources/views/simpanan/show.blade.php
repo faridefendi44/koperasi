@@ -98,10 +98,6 @@
 
                                 <td class="px-6 py-4 ">
                                     <div class="flex space-x-3 justify-center items-center">
-
-
-
-
                                         <!-- Modal toggle -->
                                         <button data-modal-target="authentication-modal-{{ $item->id }}"
                                             data-modal-toggle="authentication-modal-{{ $item->id }}" type="button">
