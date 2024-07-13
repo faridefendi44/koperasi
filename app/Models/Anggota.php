@@ -16,7 +16,6 @@ class Anggota extends Model
         'gaji',
         'bidang',
         'alamat',
-        'no_wa',
         'simpanan',
         'pangkat',
         'jabatan',

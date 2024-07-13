@@ -27,6 +27,12 @@
                     placeholder="Ketik username" required />
             </div>
             <div>
+                <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 ">Nomor Whatsapp</label>
+                <input type="text" name="no_wa"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
+                    placeholder="628123456789" required />
+            </div>
+            <div>
                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
                 <input type="password" id="first_name" name="password"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"

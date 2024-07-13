@@ -20,7 +20,6 @@ return new class extends Migration
             $table->double('gaji');
             $table->string('bidang');
             $table->string('alamat');
-            $table->string('no_wa');
             $table->double('simpanan');
             $table->string('tanggal_masuk');
             $table->string('pangkat');

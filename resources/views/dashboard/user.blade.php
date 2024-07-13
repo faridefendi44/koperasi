@@ -29,12 +29,6 @@
                         placeholder="Ketik nama anggota" required />
                 </div>
                 <div class="flex justify-around space-x-10">
-                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">No. WA</label>
-                    <input type="number" name="no_wa"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Ketik nama anggota" required />
-                </div>
-                <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">NIP</label>
                     <input name="nip" type="text" id="nip"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"

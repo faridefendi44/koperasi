@@ -60,7 +60,6 @@ class MemberController extends Controller
             'alamat' => 'required|string|max:255',
             'pangkat' => 'required|string|max:255',
             'jabatan' => 'required|string|max:255',
-            'no_wa' => 'required|string|max:255',
             'simpanan' => 'nullable|numeric',
             'tanggal_masuk' => 'nullable|date',
         ]);
