@@ -131,8 +131,10 @@
                                     {{ 'Rp ' . number_format($angsuran->total_angsuran, 0, ',', '.') }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ $angsuran->tanggal_angsuran }}
+                                    {{ \Carbon\Carbon::parse($angsuran->tanggal_angsuran)->locale('id')->isoFormat('MMMM YYYY') }}
                                 </td>
+
+
 
                                 {{-- <td class="px-6 py-4 text-right">
                                     <div class="flex space-x-3">

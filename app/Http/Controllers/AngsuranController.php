@@ -7,6 +7,7 @@ use App\Models\Angsuran;
 use App\Models\Pinjaman;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 
 
@@ -14,11 +15,12 @@ class AngsuranController extends Controller
 {
     public function printAngsuranPdf($id)
     {
+        
 
         $pinjamans = Pinjaman::with('angsuran')->findOrFail($id);
         $angsuranPokok = ceil($pinjamans->jumlah_pinjaman / $pinjamans->jangka_waktu / 1000) * 1000;
         $tanggalPinjaman = $pinjamans->created_at;
-        $cicilanPertama = date('d/m/Y', strtotime($tanggalPinjaman . ' +1 month'));
+        $cicilanPertama = Carbon::parse($tanggalPinjaman)->addMonths(1)->formatLocalized('%B %Y');
         $pdf = PDF::loadView('angsuran.print', compact('pinjamans', 'angsuranPokok', 'cicilanPertama'));
         $pdf->setPaper('A4', 'Portrait');
         return $pdf->stream('Detail Angsuran.pdf');

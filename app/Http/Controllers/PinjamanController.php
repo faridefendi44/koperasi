@@ -8,6 +8,8 @@ use App\Models\Anggota;
 use App\Models\Angsuran;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
+
 
 
 class PinjamanController extends Controller
@@ -60,8 +62,6 @@ class PinjamanController extends Controller
         $pinjaman = Pinjaman::create($validatedData);
         $angsuranPokok = ceil($pinjaman->jumlah_pinjaman / $pinjaman->jangka_waktu / 1000) * 1000;
         $bungaPinjaman = $pinjaman->jumlah_pinjaman * 0.01;
-
-
         $pinjaman->update([
             'angsuran_pokok' => $angsuranPokok,
             'bunga_pinjaman' => $bungaPinjaman,
@@ -104,7 +104,7 @@ class PinjamanController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'id_pinjaman' => 'required|string|max:255',
+
             'id_anggota' => 'required|string|max:255',
             'jangka_waktu' => 'numeric',
             'jumlah_pinjaman' => 'numeric',
@@ -123,7 +123,7 @@ class PinjamanController extends Controller
             'bunga_pinjaman' => $bungaPinjaman,
         ]);
 
-        Angsuran::where('id_pinjaman', $pinjaman->id_pinjaman)->delete();
+        Angsuran::where('id_pinjaman', $pinjaman->id)->delete();
 
         $angsuranData = [];
         $tanggalAngsuran = $pinjaman->created_at;
@@ -135,8 +135,7 @@ class PinjamanController extends Controller
             $bunga = $jumlahSisa * 0.01;
             $totalAngsuran = $angsuranPokok + $bunga;
             $angsuranData[] = [
-                'id_angsuran' => $pinjaman->id_pinjaman,
-                'id_pinjaman' => $pinjaman->id_pinjaman,
+                'id_pinjaman' => $pinjaman->id,
                 'id_anggota' => $pinjaman->id_anggota,
                 'tanggal_angsuran' => $tanggalAngsuran,
                 'angsuran_pokok' => $angsuranPokok,
@@ -167,7 +166,7 @@ class PinjamanController extends Controller
         $angsuranPokok = $pinjaman->jumlah_pinjaman / $pinjaman->jangka_waktu;
         $bungaPinjaman = $pinjaman->jumlah_pinjaman * 0.01;
         $tanggalPinjaman = $pinjaman->created_at;
-        $cicilanPertama = date('d/m/Y', strtotime($tanggalPinjaman . ' +1 month'));
+        $cicilanPertama = Carbon::parse($tanggalPinjaman)->addMonths(1)->formatLocalized('%B %Y');
         return view('pinjaman.show', compact('pinjaman', 'angsuranPokok', 'cicilanPertama', 'bungaPinjaman'));
     }
     public function approve($id){

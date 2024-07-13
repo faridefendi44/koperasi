@@ -60,33 +60,7 @@
             Pinjaman:</strong>{{ \Carbon\Carbon::parse($pinjamans->created_at)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat(' MMMM YYYY') }}
     </p>
     <p><strong>Cicilan Pertama:</strong>
-        @php
-            $dateString = $cicilanPertama;
-            $parts = explode('/', $dateString);
-            $month = $parts[1];
-            $year = $parts[2];
-
-            $months = [
-                '01' => 'Januari',
-                '02' => 'Februari',
-                '03' => 'Maret',
-                '04' => 'April',
-                '05' => 'Mei',
-                '06' => 'Juni',
-                '07' => 'Juli',
-                '08' => 'Agustus',
-                '09' => 'September',
-                '10' => 'Oktober',
-                '11' => 'November',
-                '12' => 'Desember',
-            ];
-            $monthName = $months[$month];
-        @endphp
-
-        {{ $monthName }} {{ $year }}
-
-    </p>
-
+        {{ \Carbon\Carbon::parse($cicilanPertama)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat(' MMMM YYYY') }}
     <table>
         <thead>
             <tr>
@@ -132,9 +106,10 @@
                     <td class="">
                         {{ 'Rp ' . number_format($angsuran->total_angsuran, 0, ',', '.') }}
                     </td>
-                    <td class="">
-                        {{ $angsuran->tanggal_angsuran }}
+                    <td class="px-6 py-4">
+                        {{ \Carbon\Carbon::parse($angsuran->tanggal_angsuran)->format('m/Y') }}
                     </td>
+
                 </tr>
             @endforeach
         </tbody>
@@ -159,6 +134,16 @@
                     <!-- Kosong atau teks yang diinginkan -->
                 </td>
             </tr>
+        </tfoot>
+        <tfoot>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                {{ 'Rp ' . number_format($totalAngsuran - 200000, 0, ',', '.') }}
+            </td>
+                        <td></td>
         </tfoot>
 
     </table>

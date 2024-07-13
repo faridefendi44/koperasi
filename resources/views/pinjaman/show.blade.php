@@ -20,18 +20,7 @@
             <div class="lg:w-1/2  rounded-lg p-5">
 
                 <div class="space-y-5 ">
-                    <div class="grid md:grid-cols-2 justify-center  ">
-                        <h1 class="font-semibold">Id Pinjaman</h1>
-                        <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                            {{ $pinjaman->id }}
-                        </h1>
-                    </div>
-                    <div class="grid md:grid-cols-2 justify-center  ">
-                        <h1 class="font-semibold">Id Anggota</h1>
-                        <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                            {{ $pinjaman->anggota->id_anggota }}
-                        </h1>
-                    </div>
+
                     <div class="grid md:grid-cols-2 justify-center  ">
                         <h1 class="font-semibold">Nama Anggota</h1>
                         <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
@@ -65,15 +54,10 @@
                     <div class="grid md:grid-cols-2 justify-center  ">
                         <h1 class="font-semibold">Cicilan Pertama</h1>
                         <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                            {{ $cicilanPertama }}
+                            {{ \Carbon\Carbon::parse($cicilanPertama)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat(' MMMM YYYY') }}
                         </h1>
                     </div>
-                    <div class="grid md:grid-cols-2 justify-center  ">
-                        <h1 class="font-semibold">Bunga Pinjaman</h1>
-                        <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                            {{ 'Rp ' . number_format($bungaPinjaman, 0, ',', '.') }}
-                        </h1>
-                    </div>
+
                 </div>
 
             </div>

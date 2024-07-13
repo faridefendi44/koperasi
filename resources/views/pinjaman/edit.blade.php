@@ -18,12 +18,7 @@
             <form class="py-10 space-y-5" action="{{route('pinjaman.update', $pinjaman->id)}}" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="flex justify-around space-x-10">
-                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Nomor Simpanan</label>
-                    <input type="text" value="{{$pinjaman->id_pinjaman}}"  name="id_pinjaman"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Masukkan id pinjaman koperasi" required />
-                </div>
+
 
                 <div class="flex justify-around space-x-10">
                     <label for="countries" class="w-36 block mb-2 text-sm font-semibold mt-3 text-gray-900">Nama Anggota</label>
@@ -32,7 +27,7 @@
                         <option disabled>Pilih nama anggota koperasi</option>
                         @foreach ($anggotas as $item)
                             <option value="{{ $item->id }}" {{ $item->id == $pinjaman->anggota->id ? 'selected' : '' }}>
-                                {{ $item->id_anggota }} - {{ $item->user->name }}
+                                {{ $item->nip }} - {{ $item->user->name }}
                             </option>
                         @endforeach
                     </select>
@@ -53,7 +48,7 @@
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Tanggal Pinjaman</label>
-                    <input  type="date" value="{{$pinjaman->tanggal_pinjaman}}" name="tanggal_pinjaman" 
+                    <input  type="date" value="{{$pinjaman->tanggal_pinjaman}}" name="tanggal_pinjaman"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="Tanggal Pinjaman" required />
                 </div>
