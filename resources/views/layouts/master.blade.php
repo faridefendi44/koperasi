@@ -42,8 +42,8 @@
 <body class="font-['Poppins'] ">
     @include('components.sidebar')
     <div class=" flex-1 bg-white relative pb-20 ">
-        <nav id="navbar  " class=" bg-[#A4907C] border-b-2 z-10 h-16 w-full  border-gray-300 transition-all duration-500 ease-in-out">
-            <div class="mx-auto space-x-2 flex items-center justify-end right-2 md:right-10 mr-10  absolute left-0 w-full z-20">
+        <nav id="navbar  " class=" bg-[#A4907C] border-b-2  h-16 w-full  border-gray-300 transition-all duration-500 ease-in-out">
+            <div class="mx-auto space-x-2 flex items-center justify-end right-2 md:right-10 mr-10  absolute left-0 w-full ">
                 <button id="dropdownUserAvatarButton" data-dropdown-toggle="dropdownAvatar"
                     class="flex text-sm mt-2 bg-white rounded-lg px-2 py-2 md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                     type="button">
