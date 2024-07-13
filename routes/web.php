@@ -107,12 +107,14 @@ Route::prefix('angsuran')->group(function () {
     Route::get('/download/{id}', [AngsuranController::class, 'printAngsuranPdf'])->name('angsuran.download');
 });
 Route::prefix('akun')->group(function () {
+    Route::get('/search', [AkunController::class, 'search'])->name('akun.search');
     Route::get('/all', [AkunController::class, 'index'])->name('akun.index');
     Route::get('/add', [AkunController::class, 'create'])->name('akun.create');
     Route::post('/store', [AkunController::class, 'store'])->name('akun.store');
     Route::get('/edit/{id}', [AkunController::class, 'edit'])->name('akun.edit');
     Route::put('/update/{id}', [AkunController::class, 'update'])->name('akun.update');
     Route::get('/detail/{id}', [AkunController::class, 'show'])->name('akun.show');
-    Route::get('/download/{id}', [AkunController::class, 'downloadPdf'])->name('akun.download');
+    Route::post('/delete/{id}', [AkunController::class, 'delete'])->name('akun.delete');
+
 });
 
