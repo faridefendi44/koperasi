@@ -51,9 +51,9 @@
                 </div>
                 <div class="flex justify-around space-x-10">
                     <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Password</label>
-                    <input value="{{$user->password}}" type="password" name="password"
+                    <input  type="password" name="password"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
-                        placeholder="Ketik Password" required />
+                        placeholder="Kosongkan password jika tidak ingin diubah" required />
                 </div>
                 <div>
                     <button
