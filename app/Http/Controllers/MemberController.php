@@ -48,7 +48,7 @@ class MemberController extends Controller
     }
     public function create()
     {
-        $users = User::get();
+        $users = User::where('role', 'user')->get();
         return view('member.create', compact('users'));
     }
     public function edit($id)

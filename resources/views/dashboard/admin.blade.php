@@ -36,9 +36,19 @@
                 </div>
             </div>
             <div class="w-2/5 h-60 bg-[#EAD196] p-5 font-semibold rounded-lg">
-                <h1>Simpanan</h1>
+                <h1>Simpanan {{$data['bulan']}}</h1>
                 <div class="">
                     <div class="w-full h-[1px] bg-black"></div>
+                    <div class="mt-8 flex space-x-10">
+                        <p>Rp {{ number_format($data['total_simpanan_wajib'], 0, ',', '.') }}</p>
+                        <p>Simpanan Wajib</p>
+
+                    </div>
+                    <div class="mt-8 flex space-x-10">
+                        <p>Rp {{ number_format($data['total_simpanan_pokok'], 0, ',', '.') }}</p>
+                        <p>Simpanan Pokok</p>
+
+                    </div>
                 </div>
             </div>
         </div>
