@@ -99,7 +99,7 @@ class PinjamanController extends Controller
         ]);
 
         $angsuranData = [];
-        $tanggalAngsuran = $pinjaman->created_at;
+        $tanggalAngsuran = $pinjaman->tanggal_pinjaman;
 
         $jumlahSisa = $pinjaman->jumlah_pinjaman;
 
@@ -155,7 +155,7 @@ class PinjamanController extends Controller
         Angsuran::where('id_pinjaman', $pinjaman->id)->delete();
 
         $angsuranData = [];
-        $tanggalAngsuran = $pinjaman->created_at;
+        $tanggalAngsuran = $pinjaman->tanggal_pinjaman;
         $jumlahSisa = $pinjaman->jumlah_pinjaman;
 
         for ($i = 0; $i < $pinjaman->jangka_waktu; $i++) {
@@ -194,7 +194,7 @@ class PinjamanController extends Controller
         $pinjaman = Pinjaman::findOrFail($id);
         $angsuranPokok = $pinjaman->jumlah_pinjaman / $pinjaman->jangka_waktu;
         $bungaPinjaman = $pinjaman->jumlah_pinjaman * 0.01;
-        $tanggalPinjaman = $pinjaman->created_at;
+        $tanggalPinjaman = $pinjaman->tanggal_pinjaman;
         $cicilanPertama = Carbon::parse($tanggalPinjaman)->addMonths(1)->formatLocalized('%B %Y');
         return view('pinjaman.show', compact('pinjaman', 'angsuranPokok', 'cicilanPertama', 'bungaPinjaman'));
     }
