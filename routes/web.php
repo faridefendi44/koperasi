@@ -8,6 +8,7 @@ use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AngsuranController;
 use App\Http\Controllers\AkunController;
+use App\Models\Angsuran;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,7 @@ Route::prefix('members')->group(function () {
 });
 Route::prefix('simpanan')->group(function () {
     Route::get('/all', [SimpananController::class, 'index'])->name('simpanan.index');
+    Route::get('/search', [SimpananController::class, 'search'])->name('simpanan.search');
     Route::get('/add', [SimpananController::class, 'create'])->name('simpanan.create');
     Route::post('/store', [SimpananController::class, 'store'])->name('simpanan.store');
     Route::get('/edit/{id}', [SimpananController::class, 'edit'])->name('simpanan.edit');
@@ -76,6 +78,7 @@ Route::prefix('simpanan')->group(function () {
     Route::get('/download/{id}', [SimpananController::class, 'downloadPdf'])->name('simpanan.download');
 });
 Route::prefix('pinjaman')->group(function () {
+    Route::get('/search', [PinjamanController::class, 'search'])->name('pinjaman.search');
     Route::get('/all', [PinjamanController::class, 'index'])->name('pinjaman.index');
     Route::get('/add', [PinjamanController::class, 'create'])->name('pinjaman.create');
     Route::post('/store', [PinjamanController::class, 'store'])->name('pinjaman.store');
@@ -88,6 +91,7 @@ Route::prefix('pinjaman')->group(function () {
     Route::get('/download/{id}', [PinjamanController::class, 'printPinjamanPdf'])->name('pinjaman.download');
 });
 Route::prefix('angsuran')->group(function () {
+    Route::get('/search', [AngsuranController::class, 'search'])->name('angsuran.search');
     Route::get('/all', [AngsuranController::class, 'index'])->name('angsuran.index');
     Route::get('/add', [AngsuranController::class, 'create'])->name('angsuran.create');
     Route::post('/store', [AngsuranController::class, 'store'])->name('angsuran.store');

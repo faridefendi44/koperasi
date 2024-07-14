@@ -14,6 +14,32 @@ use Carbon\Carbon;
 
 class PinjamanController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $validatedData = $request->validate([
+            'keyword' => 'required|string|max:255',
+        ]);
+
+        $pinjamans = Pinjaman::where(function ($query) use ($keyword) {
+            $query->where('id', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('jumlah_pinjaman', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('tanggal_pinjaman', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('jangka_waktu', 'LIKE', '%' . $keyword . '%');
+        })
+            ->orWhereHas('anggota', function ($query) use ($keyword) {
+                $query->where('nip', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orWhereHas('anggota.user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })
+            ->with(['anggota', 'anggota.user']) // Load relasi anggota dan user
+            ->paginate(10);
+        return view('pinjaman.index', compact('pinjamans'));
+    }
+
     public function printPinjamanPdf(Request $request, $id)
     {
 
@@ -53,13 +79,18 @@ class PinjamanController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id_anggota' => 'required|string|max:255',
+            'id_anggota' => 'nullable|string|max:255',
             'jangka_waktu' => 'numeric',
             'jumlah_pinjaman' => 'numeric',
             'tanggal_pinjaman' => '',
         ]);
 
+        if (auth()->user()->role != 'admin') {
+            $validatedData['id_anggota'] = auth()->user()->anggota->id;
+        }
         $pinjaman = Pinjaman::create($validatedData);
+
+
         $angsuranPokok = ceil($pinjaman->jumlah_pinjaman / $pinjaman->jangka_waktu / 1000) * 1000;
         $bungaPinjaman = $pinjaman->jumlah_pinjaman * 0.01;
         $pinjaman->update([
@@ -92,13 +123,11 @@ class PinjamanController extends Controller
 
         Angsuran::insert($angsuranData);
 
-        if(auth()->user()->role == 'admin'){
+        if (auth()->user()->role == 'admin') {
             return redirect()->route('pinjaman.index');
-        }else{
+        } else {
             return redirect()->route('pinjaman.indexUser');
-
         }
-
     }
 
     public function update(Request $request, $id)
@@ -169,13 +198,15 @@ class PinjamanController extends Controller
         $cicilanPertama = Carbon::parse($tanggalPinjaman)->addMonths(1)->formatLocalized('%B %Y');
         return view('pinjaman.show', compact('pinjaman', 'angsuranPokok', 'cicilanPertama', 'bungaPinjaman'));
     }
-    public function approve($id){
+    public function approve($id)
+    {
         $pinjaman = Pinjaman::findOrFail($id);
         $pinjaman->status = 'approved';
         $pinjaman->save();
         return redirect()->back();
     }
-    public function reject($id){
+    public function reject($id)
+    {
         $pinjaman = Pinjaman::findOrFail($id);
         $pinjaman->status = 'rejected';
         $pinjaman->save();

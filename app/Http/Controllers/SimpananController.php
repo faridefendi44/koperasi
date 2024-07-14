@@ -9,7 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class SimpananController extends Controller
 {
-    //
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $validatedData = $request->validate([
+            'keyword' => 'required|string|max:255',
+        ]);
+
+        $simpanans = Simpanan::where(function ($query) use ($keyword) {
+            $query->where('id', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('simpanan_wajib', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('tanggal_simpanan', 'LIKE', '%' . $keyword . '%');
+        })
+            ->orWhereHas('anggota', function ($query) use ($keyword) {
+                $query->where('nip', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orWhereHas('anggota.user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })
+            ->with(['anggota', 'anggota.user']) // Load relasi anggota dan user
+            ->paginate(10);
+        return view('simpanan.index', compact('simpanans'));
+    }
+
     public function index()
     {
         $simpanans = Simpanan::paginate(10);

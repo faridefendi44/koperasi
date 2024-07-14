@@ -13,9 +13,36 @@ use Carbon\Carbon;
 
 class AngsuranController extends Controller
 {
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $validatedData = $request->validate([
+            'keyword' => 'required|string|max:255',
+        ]);
+
+        $angsurans = Angsuran::where(function ($query) use ($keyword) {
+            $query->where('id', 'LIKE', '%' . $keyword . '%');
+        })
+            ->orWhereHas('anggota', function ($query) use ($keyword) {
+                $query->where('nip', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orWhereHas('pinjaman', function ($query) use ($keyword) {
+                $query->where('id_pinjaman', 'LIKE', '%' . $keyword . '%');
+                $query->where('jumlah_pinjaman', 'LIKE', '%' . $keyword . '%');
+            })
+            ->orWhereHas('anggota.user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%' . $keyword . '%');
+            })
+            ->with(['anggota', 'anggota.user', 'pinjaman']) // Load relasi anggota dan user
+            ->paginate(10);
+        return view('angsuran.index', compact('angsurans'));
+    }
+
     public function printAngsuranPdf($id)
     {
-        
+
 
         $pinjamans = Pinjaman::with('angsuran')->findOrFail($id);
         $angsuranPokok = ceil($pinjamans->jumlah_pinjaman / $pinjamans->jangka_waktu / 1000) * 1000;

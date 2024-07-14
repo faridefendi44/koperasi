@@ -3,22 +3,15 @@
     <div class="w-4/5 py-10  mx-auto space-y-10">
         <div class="search ">
 
-            <form class="flex  items-center  mx-auto">
+            <form action="{{route('simpanan.search')}}" method="GET" class="flex  items-center  mx-auto">
                 <label for="simple-search" class="sr-only">Search</label>
                 <div class="relative w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 18 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
-                        </svg>
-                    </div>
-                    <input type="text" id="simple-search"
+                    <input type="text" id="simple-search" name="keyword"
                         class="bg-[#F1DEC9] h-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
-                        placeholder="Search branch name..." required />
+                        placeholder="Masukkan Kata Kunci" required />
                 </div>
-                <button type="submit"
-                    class="flex space-x-2 h-14 p-2.5 ms-2 text-sm font-medium text-white bg-[#C8B6A6] rounded-lg border border-[#C8B6A6] hover:bg-opacity-80 focus:ring-4 focus:outline-none focus:ring-[#C8B6A6] ">
+                <button
+                    class="flex space-x-2 h-14 p-2.5 ms-2 text-sm font-medium text-black bg-[#EAD196] rounded-lg border border-[#C8B6A6] hover:bg-opacity-80 focus:ring-4 focus:outline-none focus:ring-[#C8B6A6] ">
                     <svg class="w-5 h-5 mt-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
