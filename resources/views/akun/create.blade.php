@@ -39,7 +39,7 @@
                         placeholder="Ketik email" required />
                 </div>
                 <div class="flex justify-around space-x-10">
-                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">Email</label>
+                    <label for="first_name" class="w-36 font-semibold block mt-3 text-sm text-gray-900 ">No Whatsapp    </label>
                     <input type="number" name="no_wa"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-12"
                         placeholder="628123456789" />
