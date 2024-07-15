@@ -80,7 +80,6 @@
                                                     fill="#9D43BD" />
                                             </svg>
                                         </a>
-<<<<<<< HEAD
                                         {{-- <a href="">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -100,9 +99,6 @@
                                         </a>
                                         <a class="bg-[#908477] px-5 py-2 text-white font-semibold"
                                             href="{{ route('angsuran.download', $item->pinjaman->id) }}">print</a>
-=======
-                                        
->>>>>>> origin/main
                                     </div>
                                 </td>
                             </tr>
