@@ -100,7 +100,7 @@
                     </g>
                 </svg>
             </h1>
-            <a target="blank" href="koperasi_knpayakumbuh@gmail.com">
+            <a target="_blank" href="mailto:koperasi_knpayakumbuh@gmail.com">
                 koperasi_knpayakumbuh@gmail.com
             </a>
         </div>
