@@ -16,30 +16,59 @@
             vertical-align: bottom;
             text-align: center;
         }
+
+        .text-left h6 {
+            font-size: 13px;
+        }
+
+        .text-center h1 {
+            font-size: 25px;
+        }
+
+        .justified-list {
+            text-align: justify;
+        }
     </style>
 <body class="">
     <div class="l mx-auto">
-        <div class="text-center">
-            <h4 class=" font-bold">KOPERASI PEGAWAI NEGERI</h4>
-            <h4 class=" font-bold">KEJAKSAAN NEGERI PAYAKUMBUH</h4>
-            <h3 class=" mt-6">PERMOHONAN PINJAMAN</h3>
+        <div class="text-left">
+            <h6>KOPERASI PEGAWAI NEGERI</h6>
+            <h6><u>KEJAKSAAN NEGERI PAYAKUMBUH</u></h6>
         </div>
+        <div class="text-center">
+            <h1 class=" mt-6" ><u>PERMOHONAN PINJAMAN</u></h1>
+        </div>
+
         <div class="mt-8">
             <p class="mb-2">Saya yang bertanda tangan dibawah ini:</p>
             <div class="pl-6">
-                <p>Nama: <span class="font-semibold">{{$pinjaman->anggota->user->name}}</span></p>
-                <p>Bidang: <span class="font-semibold">{{$pinjaman->anggota->bidang}}</span></p>
-                <p>NIP/NRP: <span class="font-semibold">{{$pinjaman->anggota->nip}}</span></p>
-                <p>Golongan: <span class="font-semibold">{{$pinjaman->anggota->golongan}}</span></p>
+                <table style="width: 50%; border: none;">
+                    <tr>
+                        <td style="width: 150px;">Nama</td>
+                        <td>: {{$pinjaman->anggota->user->name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pangkat</td>
+                        <td>: {{$pinjaman->anggota->pangkat}}</td>
+                    </tr>
+                    <tr>
+                        <td>NIP/NRP</td>
+                        <td>: {{$pinjaman->anggota->nip}}</td>
+                    </tr>
+                    <tr>
+                        <td>Jabatan</td>
+                        <td>: {{$pinjaman->anggota->jabatan}}</td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="mt-8">
-            <p class="mb-2">Dengan ini mengajukan permohonan pinjaman kepada Koperasi Pegawai Negeri Kejaksaan Negeri Payakumbuh sebesar Rp. <span class="font-semibold">{{ 'Rp ' . number_format($pinjaman->jumlah_pinjaman, 0, ',', '.') }}
+            <p class="mb-2 justified-list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan ini mengajukan permohonan pinjaman kepada Koperasi Pegawai Negeri Kejaksaan Negeri Payakumbuh sebesar <span class="font-semibold">{{ 'Rp ' . number_format($pinjaman->jumlah_pinjaman, 0, ',', '.') }}
             </span></p>
         </div>
         <div class="mt-8">
-            <h4 class="font-bold mb-2">Dengan Ketentuan:</h4>
-            <ol class="list-decimal pl-8">
+            <h4 class="mb-2">Dengan Ketentuan:</h4>
+            <ol class="list-decimal pl-8 justified-list">
                 <li>Bunga 1% setiap bulan dari jumlah sisa hutang.</li>
                 <li>Administrasi 1% dari jumlah pinjaman.</li>
                 <li>Dana Resiko 1% dari jumlah pinjaman.</li>
@@ -67,7 +96,7 @@
                         </p>
                         <p>Pemohon,</p>
                         <div class="mt-16">
-                            <p class="font-bold">{{$pinjaman->anggota->user->name}}</p>
+                            <p class="font-bold">({{$pinjaman->anggota->user->name}})</p>
                         </div>
                     </td>
                 </tr>
