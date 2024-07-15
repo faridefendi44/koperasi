@@ -35,18 +35,14 @@
                                 No
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nomor Pinjaman
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Nomor Anggota
+                                Data Anggota
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Jumlah Pinjaman
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Jumlah Angsuran
+                                Total Angsuran
                             </th>
-
                             <th scope="col" class="px-6 py-3">
                                 <span class="">Aksi</span>
                             </th>
@@ -66,10 +62,7 @@
                                     {{ $loop->iteration }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $item->id_pinjaman }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ $item->anggota->user->name }}
+                                    {{$item->anggota->nip}} - {{ $item->anggota->user->name }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ 'Rp ' . number_format($item->pinjaman->jumlah_pinjaman, 0, ',', '.') }}
@@ -87,7 +80,7 @@
                                                     fill="#9D43BD" />
                                             </svg>
                                         </a>
-                                        <a href="">
+                                        {{-- <a href="">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -95,7 +88,7 @@
                                                     stroke="#2B4AED" stroke-width="2" stroke-linecap="round"
                                                     stroke-linejoin="round" />
                                             </svg>
-                                        </a>
+                                        </a> --}}
                                         <a href="#">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -104,6 +97,8 @@
                                                     fill="#FB3333" />
                                             </svg>
                                         </a>
+                                        <a class="bg-[#908477] px-5 py-2 text-white font-semibold"
+                                            href="{{ route('angsuran.download', $item->pinjaman->id) }}">print</a>
                                     </div>
                                 </td>
                             </tr>
