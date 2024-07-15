@@ -27,7 +27,6 @@ class MemberController extends Controller
                 ->orWhere('gaji', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('bidang', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('alamat', 'LIKE', '%' . $keyword . '%')
-                ->orWhere('no_wa', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('simpanan', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('tanggal_masuk', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('jabatan', 'LIKE', '%' . $keyword . '%')
@@ -35,6 +34,7 @@ class MemberController extends Controller
         })
             ->orWhereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
+                $query->where('no_wa', 'LIKE', '%' . $keyword . '%');
             })
             ->with('user')
             ->paginate(10);
