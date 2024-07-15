@@ -5,34 +5,37 @@
         <div class="">
 
             <div class=" text-black mt-10 py-20 rounded-lg mx-auto">
-                <div class="lg:w-1/2  rounded-lg p-5">
-
-                    <div class="space-y-5 ">
-                        <div class="grid md:grid-cols-2 justify-center  ">
-                            <h1 class="font-semibold">Nomor Anggota</h1>
-                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                                {{ $pinjamans->id_anggota }}
-                            </h1>
-                        </div>
+                <div class="lg:w-1/2  rounded-lg p-2">
+                    <div class="space-y-3 ">
                         <div class="grid md:grid-cols-2 justify-center  ">
                             <h1 class="font-semibold">Nama Anggota</h1>
-                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                                {{ $pinjamans->anggota->user->name }}
+                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">: </span>
+                                 {{ $pinjamans->anggota->user->name }}
                             </h1>
                         </div>
                         <div class="grid md:grid-cols-2 justify-center  ">
                             <h1 class="font-semibold">Jumlah Pinjaman</h1>
-                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">:</span>
-                                {{ 'Rp ' . number_format($pinjamans->jumlah_pinjaman, 0, ',', '.') }}
+                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">: </span>
+                                 {{ 'Rp ' . number_format($pinjamans->jumlah_pinjaman, 0, ',', '.') }}
                             </h1>
                         </div>
-
+                        <div class="grid md:grid-cols-2 justify-center  ">
+                            <h1 class="font-semibold">Jangka Waktu</h1>
+                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">: </span>
+                                {{ $pinjamans->jangka_waktu }}
+                            </h1>
+                        </div>
+                        <div class="grid md:grid-cols-2 justify-center  ">
+                            <h1 class="font-semibold">Bulan Pinjaman</h1>
+                            <h1 class="flex md:text-left text-center"><span class="hidden md:block">: </span>
+                                {{ \Carbon\Carbon::parse($pinjamans->created_at)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('MMMM YYYY') }}
+                            </h1>
+                        </div>
                     </div>
-
                 </div>
             </div>
             <div class="py-5">
-                <h1>Daftar Angsuran</h1>
+                <h1><strong>Daftar Angsuran</strong></h1>
             </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-[#D9D9D9]">
@@ -42,23 +45,20 @@
                                 No
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Nomor Angsuran
+                                Jumlah Sisa
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Angsuran Pokok
+                                Jumlah Cicilan
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Bunga
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Jumlah Sisa
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Total Angsuran
                             </th>
 
                             <th scope="col" class="px-6 py-3">
-                                <span class="">Tanggal</span>
+                                <span class="">Keterangan</span>
                             </th>
                         </tr>
                     </thead>
@@ -115,17 +115,13 @@
 
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $angsuran->id }}
+                                    {{ 'Rp ' . number_format($angsuran->jumlah_sisa, 0, ',', '.') }}
                                 </td>
-
                                 <td class="px-6 py-4">
                                     {{ 'Rp ' . number_format($angsuran->angsuran_pokok, 0, ',', '.') }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ 'Rp ' . number_format($angsuran->bunga, 0, ',', '.') }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($angsuran->jumlah_sisa, 0, ',', '.') }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ 'Rp ' . number_format($angsuran->total_angsuran, 0, ',', '.') }}
