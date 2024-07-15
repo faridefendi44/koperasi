@@ -46,7 +46,7 @@ class AngsuranController extends Controller
 
         $pinjamans = Pinjaman::with('angsuran')->findOrFail($id);
         $angsuranPokok = ceil($pinjamans->jumlah_pinjaman / $pinjamans->jangka_waktu / 1000) * 1000;
-        $tanggalPinjaman = $pinjamans->created_at;
+        $tanggalPinjaman = $pinjamans->tanggal_pinjaman;
         $cicilanPertama = Carbon::parse($tanggalPinjaman)->addMonths(1)->formatLocalized('%B %Y');
         $pdf = PDF::loadView('angsuran.print', compact('pinjamans', 'angsuranPokok', 'cicilanPertama'));
         $pdf->setPaper('A4', 'Portrait');
