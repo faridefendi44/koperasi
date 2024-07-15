@@ -16,7 +16,6 @@
             margin-top: 10px;
         }
 
-       
 
         th,
         td {
@@ -47,28 +46,28 @@
     </div>
     <table style="width: 50%; border: none;">
         <tr>
-            <td style="width: 150px;"><strong>Nama</strong></td>
+            <td style="width: 190px;">NAMA</td>
             <td>: {{ $pinjamans->anggota->user->name }}</td>
         </tr>
         <tr>
-            <td><strong>Jumlah Pinjaman</strong></td>
+            <td>JUMLAH PINJAMAN</td>
             <td>: {{ 'Rp ' . number_format($pinjamans->jumlah_pinjaman, 0, ',', '.') }}</td>
         </tr>
         <tr>
-            <td><strong>Jangka Waktu</strong></td>
-            <td>: {{ $pinjamans->jangka_waktu }}</td>
+            <td>JANGKA WAKTU</td>
+            <td>: {{ $pinjamans->jangka_waktu }} BULAN</td>
         </tr>
         <tr>
-            <td><strong>Angsuran Pokok</strong></td>
+            <td>ANGSURAN POKOK</td>
             <td>: {{ 'Rp ' . number_format($angsuranPokok, 0, ',', '.') }}</td>
         </tr>
         <tr>
-            <td><strong>Bulan Pinjaman</strong></td>
+            <td>BULAN PINJAMAN</td>
             <td>: {{ \Carbon\Carbon::parse($pinjamans->created_at)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('MMMM YYYY') }}
             </td>
         </tr>
         <tr>
-            <td><strong>Cicilan Pertama</strong></td>
+            <td>CICILAN PERTAMA</td>
             <td>: {{ \Carbon\Carbon::parse($cicilanPertama)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('MMMM YYYY') }}
             </td>
         </tr>
@@ -166,17 +165,17 @@
         <table>
             <tr>
                 <td class="signature">
-                    <p>Peminjam</p>
+                    <p>PEMINJAM</p>
                     <div class="" style="margin-top: 60px;">
-                        <p class="font-bold">{{ $pinjamans->anggota->user->name }}</p>
+                        <p><strong><u>{{ $pinjamans->anggota->user->name }}</strong></u></p>
                     </div>
                 </td>
                 <td class="signature">
                     <p>Payakumbuh,{{ \Carbon\Carbon::parse($pinjamans->created_at)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}
                     </p>
-                    <p>Bendahara,</p>
+                    <p>BENDAHARA</p>
                     <div class="" style="margin-top: 60px;">
-                        <p class="font-bold">Ninit Sriaprila</p>
+                        <p><strong><u>NINIT SRIAPRILA</u></strong></p>
                     </div>
                 </td>
             </tr>
