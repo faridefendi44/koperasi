@@ -4,7 +4,7 @@
         <div class="mx-auto  bg-white shadow-lg rounded-lg  p-10   my-auto justify-center w-full">
             <h1 class="text-3xl font-semibold">Edit Akun</h1>
             <div class="mt-5">
-                <a href="all"
+                <a href="{{route('akun.index')}}"
                     class="bg-[#A94438] flex space-x-3 text-md font-semibold w-fit text-center   py-3 px-5 rounded-lg">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path

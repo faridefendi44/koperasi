@@ -99,7 +99,7 @@ class PinjamanController extends Controller
         ]);
 
         $angsuranData = [];
-        $tanggalAngsuran = $pinjaman->created_at;
+        $tanggalAngsuran = $pinjaman->tanggal_pinjaman;
 
         $jumlahSisa = $pinjaman->jumlah_pinjaman;
 
@@ -155,7 +155,7 @@ class PinjamanController extends Controller
         Angsuran::where('id_pinjaman', $pinjaman->id)->delete();
 
         $angsuranData = [];
-        $tanggalAngsuran = $pinjaman->created_at;
+        $tanggalAngsuran = $pinjaman->tanggal_pinjaman;
         $jumlahSisa = $pinjaman->jumlah_pinjaman;
 
         for ($i = 0; $i < $pinjaman->jangka_waktu; $i++) {
