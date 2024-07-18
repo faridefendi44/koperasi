@@ -40,7 +40,9 @@ class SimpananController extends Controller
         $perPage = 5;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $currentItems = $anggotaIds->slice(($currentPage - 1) * $perPage, $perPage)->all();
-        $simpanans = Simpanan::whereIn('id_anggota', $currentItems)->get();
+        $simpanans = Simpanan::whereIn('id_anggota', $currentItems)
+        ->orderBy('tanggal_simpanan', 'desc')
+        ->get();
         $simpanansPaginated = new LengthAwarePaginator($simpanans, $anggotaIds->count(), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
@@ -54,7 +56,9 @@ class SimpananController extends Controller
 
         $idAnggota = $user->anggota->id;
 
-        $simpanans = Simpanan::where('id_anggota', $idAnggota)->paginate(10);
+        $simpanans = Simpanan::where('id_anggota', $idAnggota)
+        ->orderBy('tanggal_simpanan', 'desc') 
+        ->paginate(10);
 
         return view('simpanan.indexUser', compact('simpanans'));
     }

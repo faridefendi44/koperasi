@@ -1,4 +1,3 @@
-<title>Simpanan</title>
 @extends('layouts.master')
 @section('content')
     <div class="">
@@ -87,11 +86,10 @@
                                         @csrf
                                         @method('PUT')
                                         <select name="status" onchange="this.form.submit()"
-                                            class="bg-gray-50  w-fit border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
-                                            <option value="lunas" {{ $item->status == 'lunas' ? 'selected' : '' }}>Sudah
-                                                Lunas</option>
-                                            <option value="belum lunas"
-                                                {{ $item->status == 'belum lunas' ? 'selected' : '' }}>Belum Lunas</option>
+                                            class="w-fit border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5
+                                            {{ $item->status == 'lunas' ? 'bg-green-100' : 'bg-red-100' }}">
+                                            <option value="lunas" {{ $item->status == 'lunas' ? 'selected' : '' }}>Sudah Lunas</option>
+                                            <option value="belum lunas" {{ $item->status == 'belum lunas' ? 'selected' : '' }}>Belum Lunas</option>
                                         </select>
                                     </form>
                                 </td>

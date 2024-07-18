@@ -93,8 +93,10 @@ class LaporanController extends Controller
         $tahun = $request->input('tahun');
         $jumlahAnggota = Anggota::whereYear('created_at', $tahun)->count();
         if ($tahun) {
+            $jumlahAnggota = Anggota::whereYear('created_at', $tahun)->count();
             $pinjaman = Pinjaman::with('angsuran')->whereYear('created_at', $tahun)->get();
         } else {
+            $jumlahAnggota = Anggota::count();
             $pinjaman = Pinjaman::with('angsuran')->get();
         }
         $totalBunga = $pinjaman->flatMap(function ($pinjaman) {
