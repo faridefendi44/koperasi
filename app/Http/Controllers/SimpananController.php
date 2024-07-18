@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Simpanan;
 use App\Models\Anggota;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class SimpananController extends Controller
 {
@@ -28,23 +29,32 @@ class SimpananController extends Controller
             ->orWhereHas('anggota.user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })
-            ->with(['anggota', 'anggota.user']) // Load relasi anggota dan user
-            ->paginate(10);
+            ->with(['anggota', 'anggota.user'])
+            ->paginate(5);
         return view('simpanan.index', compact('simpanans'));
     }
 
     public function index()
     {
-        $simpanans = Simpanan::orderBy('tanggal_simpanan', 'desc')->paginate(10);
-        return view('simpanan.index', compact('simpanans'));
+        $anggotaIds = Simpanan::select('id_anggota')->distinct()->pluck('id_anggota');
+        $perPage = 5;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $anggotaIds->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $simpanans = Simpanan::whereIn('id_anggota', $currentItems)->get();
+        $simpanansPaginated = new LengthAwarePaginator($simpanans, $anggotaIds->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+
+        return view('simpanan.index', compact('simpanansPaginated'));
     }
+
     public function indexUser()
     {
         $user = Auth::user();
 
         $idAnggota = $user->anggota->id;
 
-        $simpanans = Simpanan::where('id_anggota', $idAnggota)->orderBy('tanggal_simpanan', 'desc')->paginate(10);
+        $simpanans = Simpanan::where('id_anggota', $idAnggota)->paginate(10);
 
         return view('simpanan.indexUser', compact('simpanans'));
     }
