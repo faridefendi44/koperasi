@@ -35,7 +35,7 @@ class SimpananController extends Controller
 
     public function index()
     {
-        $simpanans = Simpanan::paginate(10);
+        $simpanans = Simpanan::orderBy('tanggal_simpanan', 'desc')->paginate(10);
         return view('simpanan.index', compact('simpanans'));
     }
     public function indexUser()
@@ -44,7 +44,7 @@ class SimpananController extends Controller
 
         $idAnggota = $user->anggota->id;
 
-        $simpanans = Simpanan::where('id_anggota', $idAnggota)->paginate(10);
+        $simpanans = Simpanan::where('id_anggota', $idAnggota)->orderBy('tanggal_simpanan', 'desc')->paginate(10);
 
         return view('simpanan.indexUser', compact('simpanans'));
     }
