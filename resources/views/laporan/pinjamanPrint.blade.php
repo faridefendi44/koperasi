@@ -75,9 +75,10 @@
     <div class="header">
         <div style="text-align: center;">
 
-            <h3>Laporan Pinjaman </h3>
-            <h3>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</h3>
-            <h3>Bulan: {{ $namaBulan }}</h3>
+            <h3><strong>Laporan Pinjaman</strong></h3>
+            <h3><strong>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</strong></h3>
+            <h3><strong>Bulan: {{ $namaBulan }}</strong></h3>
+            <br>
         </div>
 
     </div>
