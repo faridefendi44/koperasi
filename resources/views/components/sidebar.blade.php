@@ -26,7 +26,7 @@
             </svg>
         </a>
 
-        <ul class="mt-4 space-y-5 text-black   " id="sidebarMenu">
+        <ul class=" space-y-4 text-black   " id="sidebarMenu">
             @php
                 $user = auth()->user();
             @endphp
@@ -203,6 +203,29 @@
                         <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Angsuran</span>
                     </a>
                 </li>
+
+                <li class="relative">
+                    <a class="parent -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer font-semibold shadow relative bg-transparent hover:bg-[#F1DEC9] text-black"
+                        onclick="toggleDropdown('laporanDropdown')">
+                        <h1 class="opacity-0 bg-red-400 bg-[#345C6D] w-1 h-full absolute left-0 child"></h1>
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.9146 8.75002H10.2083C9.82154 8.75002 9.45061 8.90367 9.17712 9.17716C8.90363 9.45065 8.74998 9.82158 8.74998 10.2084V27.7084C8.74998 28.0951 8.90363 28.4661 9.17712 28.7396C9.45061 29.013 9.82154 29.1667 10.2083 29.1667H24.7916C25.1784 29.1667 25.5494 29.013 25.8228 28.7396C26.0963 28.4661 26.25 28.0951 26.25 27.7084V10.2084C26.25 9.82158 26.0963 9.45065 25.8228 9.17716C25.5494 8.90367 25.1784 8.75002 24.7916 8.75002H23.0854C22.7837 9.60337 22.2247 10.3421 21.4856 10.8645C20.7464 11.3869 19.8634 11.6672 18.9583 11.6667H16.0416C15.1365 11.6672 14.2535 11.3869 13.5144 10.8645C12.7752 10.3421 12.2163 9.60337 11.9146 8.75002ZM23.0854 5.83335H24.7916C25.952 5.83335 27.0648 6.29429 27.8852 7.11476C28.7057 7.93523 29.1666 9.04803 29.1666 10.2084V27.7084C29.1666 28.8687 28.7057 29.9815 27.8852 30.8019C27.0648 31.6224 25.952 32.0834 24.7916 32.0834H10.2083C9.04799 32.0834 7.93519 31.6224 7.11472 30.8019C6.29425 29.9815 5.83331 28.8687 5.83331 27.7084V10.2084C5.83331 9.04803 6.29425 7.93523 7.11472 7.11476C7.93519 6.29429 9.04799 5.83335 10.2083 5.83335H11.9146C12.2163 4.98 12.7752 4.24123 13.5144 3.71885C14.2535 3.19648 15.1365 2.91621 16.0416 2.91669H18.9583C19.8634 2.91621 20.7464 3.19648 21.4856 3.71885C22.2247 4.24123 22.7837 4.98 23.0854 5.83335ZM14.5833 7.29169C14.5833 7.67846 14.737 8.04939 15.0104 8.32288C15.2839 8.59637 15.6549 8.75002 16.0416 8.75002H18.9583C19.3451 8.75002 19.716 8.59637 19.9895 8.32288C20.263 8.04939 20.4166 7.67846 20.4166 7.29169C20.4166 6.90491 20.263 6.53398 19.9895 6.26049C19.716 5.987 19.3451 5.83335 18.9583 5.83335H16.0416C15.6549 5.83335 15.2839 5.987 15.0104 6.26049C14.737 6.53398 14.5833 6.90491 14.5833 7.29169ZM20.4166 16.0417C20.4166 16.8152 20.1094 17.5571 19.5624 18.1041C19.0154 18.6511 18.2735 18.9584 17.5 18.9584C16.7264 18.9584 15.9846 18.6511 15.4376 18.1041C14.8906 17.5571 14.5833 16.8152 14.5833 16.0417C14.5833 15.2681 14.8906 14.5263 15.4376 13.9793C15.9846 13.4323 16.7264 13.125 17.5 13.125C18.2735 13.125 19.0154 13.4323 19.5624 13.9793C20.1094 14.5263 20.4166 15.2681 20.4166 16.0417ZM20.4166 21.875C20.4166 22.6486 20.1094 23.3905 19.5624 23.9375C19.0154 24.4845 18.2735 24.7917 17.5 24.7917C16.7264 24.7917 15.9846 24.4845 15.4376 23.9375C14.8906 23.3905 14.5833 22.6486 14.5833 21.875C14.5833 21.1014 14.8906 20.3595 15.4376 19.8125C15.9846 19.2655 16.7264 18.9584 17.5 18.9584C18.2735 18.9584 19.0154 19.2655 19.5624 19.8125C20.1094 20.3595 20.4166 21.1014 20.4166 21.875Z"
+                                fill="black" />
+                        </svg>
+                        <span id="show" class="ml-4">Laporan</span>
+                    </a>
+                    <div id="laporanDropdown" class="hidden">
+                        <a href="{{route('laporanSimpanan.index')}}"
+                            class="parent  {{ Request::path() == 'laporan/simpanan' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative block ml-5">Simpanan</a>
+                        <a href="{{route('laporanPinjaman.index')}}"
+                            class="parent  {{ Request::path() == 'laporan/pinjaman' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative block ml-5">Pinjaman</a>
+                        <a href=""
+                            class="parent  {{ Request::path() == 'laporan/shu' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative block ml-5">Tahunan SHU (Sisa Hasil Usaha)</a>
+                    </div>
+                </li>
+
             @endif
 
             @if ($user && $user->role == 'user')
@@ -280,12 +303,10 @@
                         </a>
                     </li>
                 @endif
-
-
             @endif
             <li>
                 <a href="{{ Auth::check() ? url('actionlogout') : url('login') }}"
-                    class="parent {{ Request::path() == 'logout' || Request::path() == 'login' ? 'bg-[#F1DEC9]' : '' }} hover:bg-[#F1DEC9] -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer top-10 font-semibold shadow relative">
+                    class="parent {{ Request::path() == 'logout' || Request::path() == 'login' ? 'bg-[#F1DEC9]' : '' }} hover:bg-[#F1DEC9] -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer top-1 font-semibold shadow relative">
                     <h1
                         class="{{ Request::path() == 'logout' || Request::path() == 'login' ? 'active' : 'opacity-0' }} bg-red-400 bg-[#345C6D] w-1 h-full absolute left-0 child">
                     </h1>
@@ -339,7 +360,7 @@
                 <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah
                     Anda yakin ingin
                     logout? </h3>
-                <form action="{{route('actionlogout')}}" method="Get">
+                <form action="{{ route('actionlogout') }}" method="Get">
                     @csrf
                     <button type="submit"
                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
@@ -409,23 +430,19 @@
     document.addEventListener('DOMContentLoaded', function() {
         const logoutButton = document.querySelector('#sidebarMenu > li > a[href*="actionlogout"]');
         logoutButton.addEventListener('click', function(event) {
-            event.preventDefault(); // Mencegah redirect
+            event.preventDefault();
 
-            // Tambahkan kode untuk menampilkan modal
             const modal = document.getElementById('logoutModal');
             if (modal) {
-                modal.classList.remove('hidden'); // Tampilkan modal
+                modal.classList.remove('hidden');
             }
         });
 
-        // Tambahan: Tombol "Ya" pada modal
         const confirmLogoutButton = document.getElementById('confirmLogout');
         if (confirmLogoutButton) {
             confirmLogoutButton.addEventListener('click', function() {
-                // Tambahkan logika untuk logout di sini jika diperlukan
                 console.log('Logout confirmed');
-                // Sematkan logika logout sesuai dengan kebutuhan Anda di sini
-                // Misalnya, redirect ke halaman logout setelah konfirmasi
+
                 window.location.href = "{{ url('actionlogout') }}";
             });
         }
@@ -436,9 +453,8 @@
             cancelLogoutButton.addEventListener('click', function() {
                 const modal = document.getElementById('logoutModal');
                 if (modal) {
-                    modal.classList.add('hidden'); // Sembunyikan modal
+                    modal.classList.add('hidden');
                 }
-                // Tambahan logika tambahan jika diperlukan ketika membatalkan logout
                 console.log('Logout canceled');
             });
         }

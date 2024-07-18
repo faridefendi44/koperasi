@@ -16,6 +16,14 @@ class Pinjaman extends Model
         'status',
         'status_pelunasan',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($pinjaman) {
+            $pinjaman->angsuran()->delete();
+        });
+    }
     public function anggota(){
         return $this->belongsTo(Anggota::class, 'id_anggota', 'id');
     }

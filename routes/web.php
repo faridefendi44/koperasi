@@ -8,7 +8,7 @@ use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AngsuranController;
 use App\Http\Controllers\AkunController;
-use App\Models\Angsuran;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,4 +111,11 @@ Route::prefix('akun')->group(function () {
     Route::post('/delete/{id}', [AkunController::class, 'delete'])->name('akun.delete');
 
 });
+Route::prefix('laporan')->group(function () {
+    Route::get('/simpanan', [LaporanController::class, 'indexSimpanan'])->name('laporanSimpanan.index');
+    Route::get('/pinjaman', [LaporanController::class, 'indexPinjaman'])->name('laporanPinjaman.index');
+    Route::get('/download-simpanan', [LaporanController::class, 'downloadSimpananPdf'])->name('printSimpanan.index');
+    Route::get('/download-pinjaman', [LaporanController::class, 'downloadPinjamanPdf'])->name('printPinjaman.index');
+});
+
 
