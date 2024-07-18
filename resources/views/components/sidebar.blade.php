@@ -204,7 +204,7 @@
                     </a>
                 </li>
 
-                <li class="relative">
+                <li id="toggleSidebar2"  class="relative">
                     <a class="parent -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer font-semibold shadow relative bg-transparent hover:bg-[#F1DEC9] text-black"
                         onclick="toggleDropdown('laporanDropdown')">
                         <h1 class="opacity-0 bg-red-400 bg-[#345C6D] w-1 h-full absolute left-0 child"></h1>
@@ -392,6 +392,7 @@
 <script>
     const sidebar = document.getElementById('sidebar');
     const toggleSidebar = document.getElementById('toggleSidebar');
+    const toggleSidebar2 = document.getElementById('toggleSidebar2');
     const sidebarMenu = document.getElementById('sidebarMenu');
     const sidebarText = document.querySelectorAll('#sidebarMenu > li > a > span, #greetingText');
     const sidebarlogout = document.querySelectorAll('#sidebarMenu > li > button > span, #greetingText');
@@ -421,6 +422,10 @@
         isOpen = !isOpen;
         updateSidebarWidth();
     });
+    toggleSidebar2.addEventListener('click', function() {
+        isOpen = !isOpen;
+        updateSidebarWidth();
+    });
 
     updateSidebarWidth();
     window.addEventListener('resize', updateSidebarWidth);
@@ -447,7 +452,6 @@
             });
         }
 
-        // Tambahan: Tombol "Tidak" pada modal
         const cancelLogoutButton = document.getElementById('cancelLogout');
         if (cancelLogoutButton) {
             cancelLogoutButton.addEventListener('click', function() {
