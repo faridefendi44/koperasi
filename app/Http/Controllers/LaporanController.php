@@ -77,8 +77,11 @@ class LaporanController extends Controller
         $jumlahAnggota = Anggota::whereYear('created_at', $tahun)->count();
         if ($tahun) {
             $pinjaman = Pinjaman::with('angsuran')->whereYear('created_at', $tahun)->get();
+            $jumlahAnggota = Anggota::whereYear('created_at', $tahun)->count();
         } else {
             $pinjaman = Pinjaman::with('angsuran')->get();
+            $jumlahAnggota = Anggota::count();
+
         }
         $totalBunga = $pinjaman->flatMap(function ($pinjaman) {
             return $pinjaman->angsuran;
@@ -89,7 +92,8 @@ class LaporanController extends Controller
 
         return view('laporan.shu', compact('jumlahAnggota', 'totalBunga', 'persenBunga', 'shu', 'tahun'));
     }
-    public function downloadSHUPdf(Request $request){
+    public function downloadSHUPdf(Request $request)
+    {
         $tahun = $request->input('tahun');
         $jumlahAnggota = Anggota::whereYear('created_at', $tahun)->count();
         if ($tahun) {
@@ -105,10 +109,8 @@ class LaporanController extends Controller
 
         $persenBunga = $totalBunga * 0.10;
         $shu = ($totalBunga - $persenBunga) / ($jumlahAnggota > 0 ? $jumlahAnggota : 1);
-
         $pdf = PDF::loadView('laporan.shuPrint', compact('jumlahAnggota', 'totalBunga', 'persenBunga', 'shu', 'tahun'));
         $pdf->setPaper('A4', 'Portrait');
         return $pdf->stream('Data Pinjaman.pdf');
-
     }
 }

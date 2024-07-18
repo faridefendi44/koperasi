@@ -6,18 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Download Data Simpanan PDF</title>
-    {{-- <link rel="stylesheet" href="assets/library/tailwind.css"> --}}
 
     <style>
-        table,
-        th,
-        td {
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
             border: 1px solid black;
             border-collapse: collapse;
         }
 
         th,
         td {
+            border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
@@ -49,23 +57,22 @@
         }
 
         .data-table {
-            width: 50%;
+            width: 100%;
             border: none;
+            margin-top: 20px;
         }
+
         .data-table .label {
-            width: 50px;
             font-weight: bold;
             vertical-align: top;
             text-align: left;
             border: none;
-
         }
+
         .data-table .value {
-            width: 100px;
             vertical-align: top;
             text-align: left;
             border: none;
-
         }
     </style>
 </head>
@@ -73,42 +80,35 @@
 <body>
 
     <div class="header">
-        <div style="text-align: center;">
-
-            <h3>Laporan S</h3>
-            <h3>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</h3>
-            <h3>Bulan: {{ $tahun }}</h3>
-        </div>
-
+        <h3>Laporan SHU (Sisa Hasil Usaha)</h3>
+        <h3>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</h3>
+        <h3>Tahun: {{ $tahun }}</h3>
     </div>
 
-    <div class="flex justify-center py-8 relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="min-w-full border-collapse border">
-            <tbody>
-                <tr>
-                    <td class="px-4 w-1/2 py-2 border">Tahun</td>
-                    <td class="px-4 py-2 border">{{$tahun}}</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-2 border">Jumlah Anggota</td>
-                    <td class="px-4 py-2 border">{{$jumlahAnggota}}</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-2 border">Total Bunga Pinjaman</td>
-                    <td class="px-4 py-2 border"> {{ 'Rp ' . number_format($totalBunga, 0, ',', '.') }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-2 border">10% Total Bunga Pinjaman</td>
-                    <td class="px-4 py-2 border">{{ 'Rp ' . number_format($persenBunga, 0, ',', '.') }}</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-2 border">Total SHU</td>
-                    <td class="px-4 py-2 border">{{ 'Rp ' . number_format($shu, 0, ',', '.') }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td>Tahun</td>
+                <td>{{ $tahun }}</td>
+            </tr>
+            <tr>
+                <td>Jumlah Anggota</td>
+                <td>{{ $jumlahAnggota }}</td>
+            </tr>
+            <tr>
+                <td>Total Bunga Pinjaman</td>
+                <td>{{ 'Rp ' . number_format($totalBunga, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <td>10% Total Bunga Pinjaman</td>
+                <td>{{ 'Rp ' . number_format($persenBunga, 0, ',', '.') }}</td>
+            </tr>
+            <tr>
+                <td>Total SHU</td>
+                <td>{{ 'Rp ' . number_format($shu, 0, ',', '.') }}</td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 
