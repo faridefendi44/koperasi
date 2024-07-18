@@ -68,30 +68,30 @@
 
                     <tbody>
 
-                        @if ($simpanans->isEmpty())
+                        @if ($simpanansPaginated->isEmpty())
                             <tr>
                                 <td colspan="7" class="text-center py-4">
                                     Tidak ada data simpanan yang tersedia.
                                 </td>
                             </tr>
                         @else
-                            @foreach ($simpanans->unique('id_anggota') as $item)
+                            @foreach ($simpanansPaginated->unique('id_anggota') as $item)
                                 @php
                                     $anggota = $item->anggota;
                                     if (!$anggota) {
                                         continue;
                                     }
-                                    $totalSimpananWajib = $simpanans
+                                    $totalSimpananWajib = $simpanansPaginated
                                         ->where('id_anggota', $item->id_anggota)
                                         ->sum('simpanan_wajib');
-                                    $simpananPokok = $simpanans->where('id_anggota', $item->id_anggota)->first()
+                                    $simpananPokok = $simpanansPaginated->where('id_anggota', $item->id_anggota)->first()
                                         ->simpanan_pokok;
                                     $totalSimpanan = $anggota->simpanan + $totalSimpananWajib + $simpananPokok;
                                 @endphp
                                 <tr class="bg-[#D9D9D9] border-b">
                                     <th scope="row"
                                         class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{$loop->iteration}}
+                                        {{($simpanansPaginated->currentPage() - 1) * $simpanansPaginated->perPage() + $loop->iteration;}}
                                     </th>
                                     <td class="px-6 py-4">
                                         {{ $anggota->nip }} - {{ $anggota->user->name }}
@@ -100,12 +100,12 @@
                                         {{ 'Rp ' . number_format($anggota->simpanan, 0, ',', '.') }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        @foreach ($simpanans->where('id_anggota', $item->id_anggota) as $simpanan)
+                                        @foreach ($simpanansPaginated->where('id_anggota', $item->id_anggota) as $simpanan)
                                             {{ 'Rp ' . number_format($simpanan->simpanan_wajib, 0, ',', '.') }}<br>
                                         @endforeach
                                     </td>
                                     <td class="px-6 py-4">
-                                        @foreach ($simpanans->where('id_anggota', $item->id_anggota) as $simpanan)
+                                        @foreach ($simpanansPaginated->where('id_anggota', $item->id_anggota) as $simpanan)
                                             {{$simpanan->tanggal_simpanan}}<br>
                                         @endforeach
                                     </td>
@@ -125,50 +125,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <div id="popup-delete-{{ $item->id }}" tabindex="-1" aria-labelledby="modal-title"
-                                    role="dialog" aria-modal="true" id="interestDelete"
-                                    class="hidden overflow-y-auto overflow-x-hidden fixed top-80 right-0 left-0 md:left-[35%] z-50 justify-center items-center w-full md:inset-10 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative p-4 w-full max-w-md max-h-full">
-                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                            <button type="button"
-                                                class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                data-modal-hide="popup-delete-{{ $item->id }}">
-                                                <svg class="w-5 h-5 closeModal " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 14 14">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                                </svg>
-                                                <span class="sr-only">Close modal</span>
-                                            </button>
-                                            <div class="p-4 md:p-5 text-center">
-                                                <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
-                                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 20 20">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                                </svg>
-                                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                                                    Apakah
-                                                    Anda yakin ingin
-                                                    menghapus simpanan ini? </h3>
-                                                <form action="{{ route('simpanan.delete', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                                                        Hapus
-                                                    </button>
-                                                    <button data-modal-hide="popup-delete-{{ $item->id }}"
-                                                        type="button"
-                                                        class="closeModal py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                                        Batal</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             @endforeach
                         @endif
 
@@ -176,7 +133,7 @@
                     </tbody>
                 </table>
                 <div class="py-10 px-3">
-                    {{ $simpanans->links() }}
+                    {{ $simpanansPaginated->links() }}
                 </div>
             </div>
 

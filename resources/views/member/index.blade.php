@@ -1,7 +1,6 @@
-<title>Anggota Koperasi</title>
 @extends('layouts.master')
 @section('content')
-    <div class="w-4/5 py-10 mx-auto space-y-10">
+    <div class="w-4/5 py-10  mx-auto space-y-10">
         <div class="search ">
 
             <form action="{{route('member.search')}}" method="GET" class="flex  items-center  mx-auto">
@@ -69,7 +68,7 @@
                             <tr class="bg-[#D9D9D9] border-b    ">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $loop->iteration }}
+                                    {{ $loop->iteration + ($members->currentPage() - 1) * $members->perPage() }} </th>
                                 </th>
 
                                 <td class="px-6 py-4">
@@ -277,10 +276,8 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-
-
+        {{$members->links()}}
     </div>
 
     <script type="text/javascript">

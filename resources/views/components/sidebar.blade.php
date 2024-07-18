@@ -221,7 +221,7 @@
                             class="parent  {{ Request::path() == 'laporan/simpanan' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative block ml-5">Simpanan</a>
                         <a href="{{route('laporanPinjaman.index')}}"
                             class="parent  {{ Request::path() == 'laporan/pinjaman' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative block ml-5">Pinjaman</a>
-                        <a href=""
+                        <a href="{{route('laporanSHU.index')}}"
                             class="parent  {{ Request::path() == 'laporan/shu' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative block ml-5">Tahunan SHU (Sisa Hasil Usaha)</a>
                     </div>
                 </li>

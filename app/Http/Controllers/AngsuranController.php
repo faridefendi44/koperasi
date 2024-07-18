@@ -8,6 +8,8 @@ use App\Models\Pinjaman;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 
 
@@ -52,10 +54,28 @@ class AngsuranController extends Controller
         $pdf->setPaper('A4', 'Portrait');
         return $pdf->stream('Detail Angsuran.pdf');
     }
-    public function index(){
-        $angsurans = Angsuran::with('pinjaman', 'anggota.user')->get();
-        return view('angsuran.index', compact('angsurans'));
-    }
+
+    public function index()
+{
+    $idPinjamans = Angsuran::distinct('id_pinjaman')->pluck('id_pinjaman');
+
+    $perPage = 5;
+
+    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+
+    $currentItems = $idPinjamans->slice(($currentPage - 1) * $perPage, $perPage)->all();
+
+    $angsurans = Angsuran::whereIn('id_pinjaman', $currentItems)
+                    ->with('pinjaman', 'anggota.user')
+                    ->get();
+
+    $angsuransPaginated = new LengthAwarePaginator($angsurans, $idPinjamans->count(), $perPage, $currentPage, [
+        'path' => LengthAwarePaginator::resolveCurrentPath(),
+    ]);
+
+    return view('angsuran.index', compact('angsuransPaginated'));
+}
+
     public function indexUser()
     {
         $user = Auth::user();

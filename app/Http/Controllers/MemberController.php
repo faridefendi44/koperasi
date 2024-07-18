@@ -43,7 +43,7 @@ class MemberController extends Controller
 
     public function index()
     {
-        $members = Anggota::paginate(10);
+        $members = Anggota::paginate(5);
         return view('member.index', compact('members'));
     }
     public function create()

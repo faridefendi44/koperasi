@@ -3,7 +3,7 @@
     <div class="w-4/5 py-10  mx-auto space-y-10">
         <div class="search ">
 
-            <form action="{{route('pinjaman.search')}}" method="GET" class="flex  items-center  mx-auto">
+            <form action="{{ route('pinjaman.search') }}" method="GET" class="flex  items-center  mx-auto">
                 <label for="simple-search" class="sr-only">Search</label>
                 <div class="relative w-full">
                     <input type="text" id="simple-search" name="keyword"
@@ -35,8 +35,6 @@
         </div>
 
         <div class="">
-
-
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-[#D9D9D9]">
                     <thead class="text-xs text-gray-700 uppercase bg-[#D9D9D9]  ">
@@ -73,7 +71,7 @@
                                 </th>
 
                                 <td class="px-6 py-4">
-                                    {{$item->anggota->nip}} - {{ $item->anggota->user->name }}
+                                    {{ $item->anggota->nip }} - {{ $item->anggota->user->name }}
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ $item->tanggal_pinjaman }}
@@ -128,7 +126,7 @@
                                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                         <button type="button"
                                             class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                            data-modal-hide="popup-delete-{{$item->id}}">
+                                            data-modal-hide="popup-delete-{{ $item->id }}">
                                             <svg class="w-5 h-5 closeModal " aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                                 <path stroke="currentColor" stroke-linecap="round"
@@ -150,11 +148,11 @@
                                                 menghapus pinjaman ini? </h3>
                                             <form action="{{ route('pinjaman.delete', $item->id) }}" method="POST">
                                                 @csrf
-                                                <button  type="submit"
+                                                <button type="submit"
                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                                     Hapus
                                                 </button>
-                                                <button data-modal-hide="popup-delete-{{$item->id}}" type="button"
+                                                <button data-modal-hide="popup-delete-{{ $item->id }}" type="button"
                                                     class="closeModal py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                                     Batal</button>
                                             </form>
@@ -167,9 +165,7 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-
-
+        {{ $pinjamans->links() }}
     </div>
 @endsection

@@ -114,8 +114,10 @@ Route::prefix('akun')->group(function () {
 Route::prefix('laporan')->group(function () {
     Route::get('/simpanan', [LaporanController::class, 'indexSimpanan'])->name('laporanSimpanan.index');
     Route::get('/pinjaman', [LaporanController::class, 'indexPinjaman'])->name('laporanPinjaman.index');
+    Route::get('/shu', [LaporanController::class, 'indexSHU'])->name('laporanSHU.index');
     Route::get('/download-simpanan', [LaporanController::class, 'downloadSimpananPdf'])->name('printSimpanan.index');
     Route::get('/download-pinjaman', [LaporanController::class, 'downloadPinjamanPdf'])->name('printPinjaman.index');
+    Route::get('/download-SHU', [LaporanController::class, 'downloadSHUPdf'])->name('printSHU.index');
 });
 
 

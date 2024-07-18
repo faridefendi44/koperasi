@@ -4,7 +4,7 @@
     <div class="w-4/5 py-10 mx-auto space-y-10">
         <div class="search ">
 
-            <form action="{{route('akun.search')}}" method="GET" class="flex  items-center  mx-auto">
+            <form action="{{ route('akun.search') }}" method="GET" class="flex  items-center  mx-auto">
                 <label for="simple-search" class="sr-only">Search</label>
                 <div class="relative w-full">
                     <input type="text" id="simple-search" name="keyword"
@@ -24,8 +24,7 @@
         </div>
 
         <div class="">
-            <a href="{{ route('akun.create') }}"
-                class="flex py-3 px-6 w-fit space-x-3 bg-[#A94438] text-white rounded-xl ">
+            <a href="{{ route('akun.create') }}" class="flex py-3 px-6 w-fit space-x-3 bg-[#A94438] text-white rounded-xl ">
                 <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M14.0001 23.3332V13.9998M14.0001 13.9998V4.6665M14.0001 13.9998H23.3334M14.0001 13.9998H4.66675"
@@ -67,7 +66,7 @@
                             <tr class="bg-[#D9D9D9] border-b    ">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $loop->iteration }}
+                                    {{ $loop->iteration + ($users->currentPage() - 1) * $users->perPage() }} </th>
                                 </th>
 
                                 <td class="px-6 py-4">
@@ -87,7 +86,8 @@
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex space-x-3">
 
-                                        <a href="{{route('akun.show', $item->id)}}" class="font-medium text-blue-600  hover:underline">
+                                        <a href="{{ route('akun.show', $item->id) }}"
+                                            class="font-medium text-blue-600  hover:underline">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -95,7 +95,7 @@
                                                     fill="#9D43BD" />
                                             </svg>
                                         </a>
-                                        <a href="{{route('akun.edit', $item->id)}}">
+                                        <a href="{{ route('akun.edit', $item->id) }}">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -145,7 +145,7 @@
                                             <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah
                                                 Anda yakin ingin
                                                 menghapus user ini? </h3>
-                                            <form action="{{route('akun.delete', $item->id)}}" method="POST">
+                                            <form action="{{ route('akun.delete', $item->id) }}" method="POST">
                                                 @csrf
                                                 <button type="submit"
                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
@@ -164,10 +164,8 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-
-
+        {{ $users->links() }}
     </div>
 
     <script type="text/javascript">

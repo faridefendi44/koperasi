@@ -22,13 +22,13 @@ class AkunController extends Controller
                 ->orWhere('role', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('username', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('role', 'LIKE', '%' . $keyword . '%');
-        })->paginate(10);
+        })->paginate(5);
         return view('akun.index', compact('users'));
     }
 
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(5);
         return view('akun.index', compact('users'));
     }
     public function create()

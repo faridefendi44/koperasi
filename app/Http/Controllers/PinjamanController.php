@@ -35,8 +35,8 @@ class PinjamanController extends Controller
             ->orWhereHas('anggota.user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE', '%' . $keyword . '%');
             })
-            ->with(['anggota', 'anggota.user']) // Load relasi anggota dan user
-            ->paginate(10);
+            ->with(['anggota', 'anggota.user'])
+            ->paginate(5);
         return view('pinjaman.index', compact('pinjamans'));
     }
 
@@ -53,7 +53,7 @@ class PinjamanController extends Controller
 
     public function index()
     {
-        $pinjamans = Pinjaman::paginate(10);
+        $pinjamans = Pinjaman::paginate(5);
         return view('pinjaman.index', compact('pinjamans'));
     }
 
