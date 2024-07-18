@@ -29,19 +29,7 @@ class DashboardController extends Controller
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
 
-        // $simpananBulanIni = Simpanan::select(
-        //     DB::raw('SUM(simpanan_wajib) as total_simpanan_wajib'),
-        //     // DB::raw('SUM(simpanan_pokok) as total_simpanan_pokok')
-        // )
-        //     ->whereYear('tanggal_simpanan', $currentYear)
-        //     ->whereMonth('tanggal_simpanan', $currentMonth)
-        //     ->first();
-
-        // $data = [
-        //     'bulan' => Carbon::now()->format('F Y'), // Format: Nama Bulan Tahun
-        //     'total_simpanan_wajib' => $simpananBulanIni->total_simpanan_wajib,
-        //     // 'total_simpanan_pokok' => $simpananBulanIni->total_simpanan_pokok,
-        // ];
+        
 
 
         $simpananBulanIni = Simpanan::select(
@@ -51,12 +39,10 @@ class DashboardController extends Controller
         ->whereMonth('tanggal_simpanan', $currentMonth)
         ->first();
 
-        // Menghitung total simpanan_pokok dari tabel Anggota
         $totalSimpananPokok = Anggota::sum('simpanan');
 
-        // Menyiapkan data untuk ditampilkan di view
         $data = [
-            'bulan' => Carbon::now()->format('F Y'), // Format: Nama Bulan Tahun
+            'bulan' => Carbon::now()->format('F Y'),
             'total_simpanan_wajib' => $simpananBulanIni->total_simpanan_wajib,
             'total_simpanan_pokok' => $totalSimpananPokok,
         ];
