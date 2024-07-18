@@ -87,7 +87,7 @@
                             }
                             $totalSimpananWajib = $simpanans->where('id_anggota', $item->id_anggota)->sum('simpanan_wajib');
                             $simpananPokok = $anggota->simpanan;
-                            $totalSimpanan = $anggota->simpanan + $totalSimpananWajib + $simpananPokok;
+                            $totalSimpanan = $anggota->simpanan + $totalSimpananWajib;
 
                             $totalWajib += $totalSimpananWajib;
                             $totalPokok += $simpananPokok;
