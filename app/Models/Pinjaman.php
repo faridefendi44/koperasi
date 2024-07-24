@@ -15,6 +15,7 @@ class Pinjaman extends Model
         'tanggal_pinjaman',
         'status',
         'status_pelunasan',
+        'lampiran',
     ];
     protected static function boot()
     {

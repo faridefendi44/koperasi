@@ -7,6 +7,7 @@ use App\Models\Anggota;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Notifications\WebNotification;
 
 
 class MemberController extends Controller
@@ -78,7 +79,17 @@ class MemberController extends Controller
         }
         $validatedData['simpanan'] = $validatedData['simpanan'] ?? 50000;
         $validatedData['tanggal_masuk'] = $validatedData['tanggal_masuk'] ?? Carbon::today()->toDateString();
-        Anggota::create($validatedData);
+        $anggota = Anggota::create($validatedData);
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            $data = [
+                'title' => 'Verifikasi Anggota Baru',
+                'message' => "{$anggota->user->name} dengan nip {$anggota->nip} telah mendaftar sebagai anggota koperasi, dan saat ini butuh verifikasi oleh admin. Klik di sini untuk melakukan verifikasi.",
+                'url' => url('/members/detail/' . $anggota->id),
+            ];
+
+            $admin->notify(new WebNotification($data));
+        }
 
         if (Auth::user()->role == 'admin') {
             return redirect()->route('member.index')->with('success', 'Data anggota berhasil disimpan.');

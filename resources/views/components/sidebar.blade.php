@@ -244,7 +244,7 @@
                         <span id="show" class="text-[12px] md:text-[18px] ml-4 ">Profil</span>
                     </a>
                 </li>
-                @if ($user->anggota && $user->anggota->status !== 'proses')
+                @if ($user->anggota && $user->anggota->status !== 'proses' && $user->anggota->status !== 'rejected')
                     <li>
                         <a href="{{ url('users/simpanan') }}"
                             class="parent  {{ Request::path() == 'users/simpanan' ? 'bg-[#F1DEC9]' : '' }}  hover:bg-[#F1DEC9]  -ml-2 p-4 w-auto h-12 mt-2 flex items-center rounded-md duration-300 cursor-pointer   font-semibold shadow relative">

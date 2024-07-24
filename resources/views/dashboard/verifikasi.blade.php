@@ -20,8 +20,10 @@
                 @if (auth()->user()->anggota && auth()->user()->anggota->status == 'proses')
                     Terimakasih, permintaan Anda telah terkirim dan akan dilakukan
                     verifikasi terlebih dahulu oleh Admin.
-                    @else
+                    @elseif(auth()->user()->anggota && auth()->user()->anggota->status == 'approved')
                    Status keanggotaan anda telah di verifikasi
+                   @elseif(auth()->user()->anggota && auth()->user()->anggota->status == 'rejected')
+                   Status keanggotaan anda telah di tolak
                 @endif
 
             </h1>
