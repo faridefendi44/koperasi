@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AngsuranController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\NotificationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -100,15 +102,15 @@ Route::prefix('angsuran')->group(function () {
     Route::get('/detail/{id}', [AngsuranController::class, 'show'])->name('angsuran.show');
     Route::get('/download/{id}', [AngsuranController::class, 'printAngsuranPdf'])->name('angsuran.download');
 });
-Route::prefix('akun')->middleware(['role:admin','auth'])->group(function () {
-    Route::get('/search', [AkunController::class, 'search'])->name('akun.search');
-    Route::get('/all', [AkunController::class, 'index'])->name('akun.index');
-    Route::get('/add', [AkunController::class, 'create'])->name('akun.create');
+Route::prefix('akun')->group(function () {
+    Route::get('/search', [AkunController::class, 'search'])->middleware(['role:admin','auth'])->name('akun.search');
+    Route::get('/all', [AkunController::class, 'index'])->middleware(['role:admin','auth'])->name('akun.index');
+    Route::get('/add', [AkunController::class, 'create'])->middleware(['role:admin','auth'])->name('akun.create');
     Route::post('/store', [AkunController::class, 'store'])->name('akun.store');
     Route::get('/edit/{id}', [AkunController::class, 'edit'])->name('akun.edit');
     Route::put('/update/{id}', [AkunController::class, 'update'])->name('akun.update');
-    Route::get('/detail/{id}', [AkunController::class, 'show'])->name('akun.show');
-    Route::post('/delete/{id}', [AkunController::class, 'delete'])->name('akun.delete');
+    Route::get('/detail/{id}', [AkunController::class, 'show'])->middleware(['role:admin','auth'])->name('akun.show');
+    Route::post('/delete/{id}', [AkunController::class, 'delete'])->middleware(['role:admin','auth'])->name('akun.delete');
 
 });
 Route::prefix('laporan')->middleware(['role:admin','auth'])->group(function () {
@@ -119,5 +121,11 @@ Route::prefix('laporan')->middleware(['role:admin','auth'])->group(function () {
     Route::get('/download-pinjaman', [LaporanController::class, 'downloadPinjamanPdf'])->name('printPinjaman.index');
     Route::get('/download-SHU', [LaporanController::class, 'downloadSHUPdf'])->name('printSHU.index');
 });
+
+
+Route::get('/notifications/unread-count', [NotificationController::class, 'getUnreadNotificationsCount'])->name('notifications.unreadCount');
+Route::get('/notifications', [NotificationController::class, 'getNotifications'])->name('notifications.list');
+Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+
 
 

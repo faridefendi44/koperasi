@@ -8,7 +8,10 @@ use App\Models\Anggota;
 use App\Models\Angsuran;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\User;
 use Carbon\Carbon;
+use App\Notifications\WebNotification;
+
 
 
 
@@ -89,6 +92,16 @@ class PinjamanController extends Controller
             $validatedData['id_anggota'] = auth()->user()->anggota->id;
         }
         $pinjaman = Pinjaman::create($validatedData);
+        $admins = User::where('role', 'admin')->get();
+        foreach ($admins as $admin) {
+            $data = [
+                'title' => 'Verifikasi Anggota Baru',
+                'message' => "{$pinjaman->anggota->user->name} mengajukan pinjaman sebesar Rp " . number_format($pinjaman->jumlah_pinjaman, 0, ',', '.') . " dengan jangka waktu {$pinjaman->jangka_waktu} bulan. Klik disini untuk menyetujui pinjaman",
+                'url' => url('/pinjaman/detail/' . $pinjaman->id),
+            ];
+
+            $admin->notify(new WebNotification($data));
+        }
 
 
         $angsuranPokok = ceil($pinjaman->jumlah_pinjaman / $pinjaman->jangka_waktu / 1000) * 1000;
