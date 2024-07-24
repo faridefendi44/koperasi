@@ -95,7 +95,7 @@ class PinjamanController extends Controller
         $admins = User::where('role', 'admin')->get();
         foreach ($admins as $admin) {
             $data = [
-                'title' => 'Verifikasi Anggota Baru',
+                'title' => 'Verifikasi Pengajuan Pinjaman Baru',
                 'message' => "{$pinjaman->anggota->user->name} mengajukan pinjaman sebesar Rp " . number_format($pinjaman->jumlah_pinjaman, 0, ',', '.') . " dengan jangka waktu {$pinjaman->jangka_waktu} bulan. Klik disini untuk menyetujui pinjaman",
                 'url' => url('/pinjaman/detail/' . $pinjaman->id),
             ];
