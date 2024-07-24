@@ -41,12 +41,31 @@
         .header-table td {
             border: none;
         }
+
+
     </style>
 </head>
 
 <body>
 
     <div class="header">
+        <table class="header-table">
+            <tr>
+                <td style="width: 20%;">
+                    <img src="img/Kejaksaan_Agung_Republik_Indonesia_new_logo 1.png" alt="Logo">
+                </td>
+                <td style="width: 80%;">
+                    <h3>KEJAKSAAN REPUBLIK INDONESIA</h3>
+                    <h3>KEJAKSAAN TINGGI SUMATERA BARAT</h3>
+                    <h2>KEJAKSAAN NEGERI PAYAKUMBUH</h2>
+                    <p>JL. Soekarno Hatta No. 215 Kec. Payakumbuh Barat Kota Payakumbuh</p>
+                    <p>Telp. (0752) 92019 Fax (0752) 92019 email: <a
+                            href="mailto:kejari.payakumbuh@kejaksaan.go.id">kejari.payakumbuh@kejaksaan.go.id</a></p>
+                </td>
+            </tr>
+        </table>
+        <hr>
+
         <div style="text-align: center;">
 
             <h3>Laporan Simpanan </h3>
