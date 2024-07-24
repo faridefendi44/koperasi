@@ -157,8 +157,6 @@
                                 </div>
                             </td>
 
-
-
                             <td class="px-6 py-4">
                                 {{ $item->tanggal_pinjaman }}
                             </td>
