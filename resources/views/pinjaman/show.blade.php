@@ -59,6 +59,12 @@
                             {{ \Carbon\Carbon::parse($cicilanPertama)->setTimezone('Asia/Jakarta')->locale('id')->isoFormat(' MMMM YYYY') }}
                         </h1>
                     </div>
+                    <div class="grid md:grid-cols-2 justify-center  ">
+                        <h1 class="font-semibold">Lampiran</h1>
+                        <h1 class="flex md:text-left "><span class="hidden md:block">:</span>
+                        <a href="{{$pinjaman->lampiran}}">{{basename($pinjaman->lampiran)}}</a>
+                        </h1>
+                    </div>
 
                 </div>
 

@@ -88,6 +88,7 @@ Route::prefix('pinjaman')->group(function () {
     Route::put('/update/{id}', [PinjamanController::class, 'update'])->name('pinjaman.update');
     Route::get('/detail/{id}', [PinjamanController::class, 'show'])->name('pinjaman.show');
     Route::put('/approve/{id}', [PinjamanController::class, 'approve'])->middleware(['role:admin','auth'])->name('pinjaman.approve');
+    Route::put('/upload-lampiran/{id}', [PinjamanController::class, 'uploadLampiran'])->middleware(['role:admin','auth'])->name('pinjaman.uploadLampiran');
     Route::put('/reject/{id}', [PinjamanController::class, 'reject'])->middleware(['role:admin','auth'])->name('pinjaman.reject');
     Route::post('/delete/{id}', [PinjamanController::class, 'delete'])->middleware(['role:admin','auth'])->name('pinjaman.delete');
     Route::get('/download/{id}', [PinjamanController::class, 'printPinjamanPdf'])->name('pinjaman.download');

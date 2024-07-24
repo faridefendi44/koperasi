@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('tanggal_pinjaman');
             $table->string('status')->default('pending');
             $table->string('status_pelunasan')->default('belum');
+            $table->string('lampiran')->nullable();
             $table->timestamps();
         });
     }

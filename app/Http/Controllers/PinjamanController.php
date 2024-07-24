@@ -231,4 +231,24 @@ class PinjamanController extends Controller
         $pinjaman->delete();
         return redirect()->route('pinjaman.index');
     }
+
+    public function uploadLampiran(Request $request, $id)
+    {
+        $pinjaman = Pinjaman::findOrFail($id);
+
+        $request->validate([
+            'lampiran' => 'required|file|mimes:pdf,jpg,png,doc,docx',
+        ]);
+
+        $file = $request->file('lampiran');
+
+        $fileName = time() . '-' . $file->getClientOriginalName();
+        $file->move(public_path('lampiran'), $fileName);
+        $appUrl = config('app.url');
+        $fileUrl = $appUrl . '/lampiran/' . $fileName;
+
+        $pinjaman->lampiran = $fileUrl;
+        $pinjaman->save();
+        return redirect()->back()->with('success', 'Lampiran berhasil diupload.');
+    }
 }
