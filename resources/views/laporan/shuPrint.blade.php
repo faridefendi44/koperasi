@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Download Data Simpanan PDF</title>
+    <title>Download Data Tahunan SHU (Sisa Hasil Usaha) PDF</title>
 
     <style>
         body {
@@ -74,37 +74,59 @@
             text-align: left;
             border: none;
         }
+
+        .header-table p{
+            font-size: 13px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="header">
+        <table class="header-table">
+            <tr>
+                <td style="width: 20%;">
+                    <img src="img/Kejaksaan_Agung_Republik_Indonesia_new_logo 1.png" alt="Logo">
+                </td>
+                <td style="width: 80%;">
+                    <h3><strong>KEJAKSAAN REPUBLIK INDONESIA</strong></h3>
+                    <h3><strong>KEJAKSAAN TINGGI SUMATERA BARAT</strong></h3>
+                    <h2><strong>KEJAKSAAN NEGERI PAYAKUMBUH</strong></h2>
+                    <p>JL. Soekarno Hatta No. 215 Kec. Payakumbuh Barat Kota Payakumbuh</p>
+                    <p>Telp. (0752) 92019 Fax (0752) 92019 email: <a
+                            href="mailto:kejari.payakumbuh@kejaksaan.go.id">kejari.payakumbuh@kejaksaan.go.id</a></p>
+                </td>
+            </tr>
+        </table>
+        <hr>
+
         <h3>Laporan SHU (Sisa Hasil Usaha)</h3>
         <h3>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</h3>
         <h3>Tahun: {{ $tahun }}</h3>
     </div>
 
+    <br>
     <table>
         <tbody>
             <tr>
-                <td>Tahun</td>
+                <td><strong>Tahun</strong></td>
                 <td>{{ $tahun }}</td>
             </tr>
             <tr>
-                <td>Jumlah Anggota</td>
+                <td><strong>Jumlah Anggota</strong></td>
                 <td>{{ $jumlahAnggota }}</td>
             </tr>
             <tr>
-                <td>Total Bunga Pinjaman</td>
+                <td><strong>Total Bunga Pinjaman</strong></td>
                 <td>{{ 'Rp ' . number_format($totalBunga, 0, ',', '.') }}</td>
             </tr>
             <tr>
-                <td>10% Total Bunga Pinjaman</td>
+                <td><strong>10% Total Bunga Pinjaman</strong></td>
                 <td>{{ 'Rp ' . number_format($persenBunga, 0, ',', '.') }}</td>
             </tr>
             <tr>
-                <td>Total SHU</td>
+                <td><strong>Total SHU</strong></td>
                 <td>{{ 'Rp ' . number_format($shu, 0, ',', '.') }}</td>
             </tr>
         </tbody>
