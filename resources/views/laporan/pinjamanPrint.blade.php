@@ -67,14 +67,43 @@
             border: none;
 
         }
+
+        .header-table p{
+            font-size: 13px;
+        }
+
+        .header-table h3{
+            font-size: 20px;
+        }
+
+        .header-table h2{
+            font-size: 26px;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="header">
-        <div style="text-align: center;">
+        <table class="header-table">
+            <tr>
+                <td style="width: 20%;">
+                    <img src="img/Kejaksaan_Agung_Republik_Indonesia_new_logo 1.png" alt="Logo">
+                </td>
+                <td style="width: 80%;">
+                    <h3><strong>KEJAKSAAN REPUBLIK INDONESIA</strong></h3>
+                    <h3><strong>KEJAKSAAN TINGGI SUMATERA BARAT</strong></h3>
+                    <h2><strong>KEJAKSAAN NEGERI PAYAKUMBUH</strong></h2>
+                    <p>JL. Soekarno Hatta No. 215 Kec. Payakumbuh Barat Kota Payakumbuh</p>
+                    <p>Telp. (0752) 92019 Fax (0752) 92019 email: <a
+                            href="mailto:kejari.payakumbuh@kejaksaan.go.id">kejari.payakumbuh@kejaksaan.go.id</a></p>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <br>
 
+        <div style="text-align: center;">
             <h3><strong>Laporan Pinjaman</strong></h3>
             <h3><strong>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</strong></h3>
             <h3><strong>Bulan: {{ $namaBulan }}</strong></h3>
