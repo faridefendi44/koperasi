@@ -14,12 +14,14 @@
         td {
             border: 1px solid black;
             border-collapse: collapse;
+            width: 50%;
         }
 
         th,
         td {
             padding: 8px;
             text-align: center;
+            width: 50%;
         }
 
         .header-table {
@@ -79,6 +81,27 @@
         .header-table h2{
             font-size: 26px;
         }
+
+        .signature {
+            width: 100%;
+            margin-top: 50px;
+            text-align: right;
+            position: relative;
+        }
+
+        .signature p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .signature .date {
+            text-align: right;
+        }
+
+        .signature .name {
+            margin-top: 80px;
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -114,12 +137,11 @@
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-[#D9D9D9]">
-            <thead class="text-xs text-gray-700 uppercase bg-[#D9D9D9]  ">
-                <tr class="text-center">
+            <thead class="text-xs text-gray-700 uppercase bg-[#D9D9D9] ">
+                <tr class="text-center" >
                     <th scope="col" class="px-6 py-3">
                         No
                     </th>
-
                     <th scope="col"  class="px-6 py-3">
                         Data Anggota
                     </th>
@@ -203,6 +225,12 @@
 
             </tbody>
         </table>
+    </div>
+
+    <div class="signature">
+        <p class="date">Payakumbuh, {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+        <p>BENDAHARA</p>
+        <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
     </div>
 
 </body>

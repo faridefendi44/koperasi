@@ -42,6 +42,27 @@
             border: none;
         }
 
+        .signature {
+            width: 90%;
+            margin-top: 50px;
+            text-align: right;
+            position: relative;
+        }
+
+        .signature p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .signature .date {
+            text-align: right;
+        }
+
+        .signature .name {
+            margin-top: 80px;
+            text-align: right;
+        }
+
 
     </style>
 </head>
@@ -142,6 +163,12 @@
                 @endif
             </tbody>
         </table>
+    </div>
+
+    <div class="signature">
+        <p class="date">Payakumbuh, {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+        <p>BENDAHARA</p>
+        <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
     </div>
 
 </body>
