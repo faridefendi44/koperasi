@@ -139,22 +139,22 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-[#D9D9D9]">
             <thead class="text-xs text-gray-700 uppercase bg-[#D9D9D9] ">
                 <tr class="text-center" >
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         No
                     </th>
-                    <th scope="col"  class="px-6 py-3">
+                    <th scope="col"  class="px-3 py-3">
                         Data Anggota
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         Tanggal Pinjaman
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         Jangka
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         Besar Pinjaman
                     </th>
-                    <th scope="col" class="px-6 py-3">
+                    <th scope="col" class="px-3 py-3">
                         Status
                     </th>
                 </tr>
