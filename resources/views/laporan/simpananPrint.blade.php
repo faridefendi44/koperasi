@@ -47,6 +47,7 @@
             margin-top: 50px;
             text-align: right;
             position: relative;
+            page-break-inside: avoid;
         }
 
         .signature p {
@@ -63,7 +64,41 @@
             text-align: right;
         }
 
+        @media print {
+            body {
+                width: 100%;
+                height: 100%;
+            }
 
+            .page-break {
+                page-break-before: always;
+            }
+
+            .header {
+                page-break-after: avoid;
+            }
+
+            table {
+                page-break-inside: auto;
+                width: 100%;
+                margin: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            td,
+            th {
+                page-break-inside: avoid;
+            }
+
+            .signature {
+                page-break-inside: avoid;
+                page-break-after: always;
+            }
+        }
     </style>
 </head>
 
@@ -88,7 +123,6 @@
         <hr>
 
         <div style="text-align: center;">
-
             <h3>Laporan Simpanan </h3>
             <h3>Koperasi Simpan Pinjam Kejaksaan Negeri Payakumbuh</h3>
             <h3>Bulan: {{ $namaBulan }}</h3>

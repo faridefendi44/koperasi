@@ -54,31 +54,31 @@
             width: 50%;
             border: none;
         }
+
         .data-table .label {
             width: 50px;
             font-weight: bold;
             vertical-align: top;
             text-align: left;
             border: none;
-
         }
+
         .data-table .value {
             width: 100px;
             vertical-align: top;
             text-align: left;
             border: none;
-
         }
 
-        .header-table p{
+        .header-table p {
             font-size: 13px;
         }
 
-        .header-table h3{
+        .header-table h3 {
             font-size: 20px;
         }
 
-        .header-table h2{
+        .header-table h2 {
             font-size: 26px;
         }
 
@@ -87,6 +87,7 @@
             margin-top: 50px;
             text-align: right;
             position: relative;
+            page-break-inside: avoid;
         }
 
         .signature p {
@@ -101,6 +102,42 @@
         .signature .name {
             margin-top: 80px;
             text-align: right;
+        }
+
+        @media print {
+            body {
+                width: 100%;
+                height: 100%;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .header {
+                page-break-after: avoid;
+            }
+
+            table {
+                page-break-inside: auto;
+                width: 100%;
+                margin: auto;
+            }
+
+            tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            td,
+            th {
+                page-break-inside: avoid;
+            }
+
+            .signature {
+                page-break-inside: avoid;
+                page-break-after: always;
+            }
         }
     </style>
 </head>
@@ -118,8 +155,7 @@
                     <h3><strong>KEJAKSAAN TINGGI SUMATERA BARAT</strong></h3>
                     <h2><strong>KEJAKSAAN NEGERI PAYAKUMBUH</strong></h2>
                     <p>JL. Soekarno Hatta No. 215 Kec. Payakumbuh Barat Kota Payakumbuh</p>
-                    <p>Telp. (0752) 92019 Fax (0752) 92019 email: <a
-                            href="mailto:kejari.payakumbuh@kejaksaan.go.id">kejari.payakumbuh@kejaksaan.go.id</a></p>
+                    <p>Telp. (0752) 92019 Fax (0752) 92019 email: <a href="mailto:kejari.payakumbuh@kejaksaan.go.id">kejari.payakumbuh@kejaksaan.go.id</a></p>
                 </td>
             </tr>
         </table>
@@ -138,11 +174,11 @@
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 bg-[#D9D9D9]">
             <thead class="text-xs text-gray-700 uppercase bg-[#D9D9D9] ">
-                <tr class="text-center" >
+                <tr class="text-center">
                     <th scope="col" class="px-3 py-3">
                         No
                     </th>
-                    <th scope="col"  class="px-3 py-3">
+                    <th scope="col" class="px-3 py-3">
                         Data Anggota
                     </th>
                     <th scope="col" class="px-3 py-3">
@@ -162,66 +198,65 @@
 
             <tbody>
                 @if ($pinjamans->isEmpty())
-                    <tr>
-                        <td colspan="7" class="text-center py-4">Tidak ada data pinjaman yang tersedia.</td>
-                    </tr>
+                <tr>
+                    <td colspan="7" class="text-center py-4">Tidak ada data pinjaman yang tersedia.</td>
+                </tr>
                 @else
-                    @foreach ($pinjamans as $item)
-                        <tr class="bg-[#D9D9D9] border-b text-center    ">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{ $loop->iteration + ($pinjamans->currentPage() - 1) * $pinjamans->perPage() }} </th>
+                @foreach ($pinjamans as $item)
+                <tr class="bg-[#D9D9D9] border-b text-center">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ $loop->iteration + ($pinjamans->currentPage() - 1) * $pinjamans->perPage() }} </th>
 
-                            </th>
-                            <td class="" >
-                                <div class="">
-                                    <table class="data-table">
-                                        <tr>
-                                            <td class="label">Nama</td>
-                                            <td class="value">: {{ $item->anggota->user->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">NIP</td>
-                                            <td class="value">: {{ $item->anggota->nip }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Pangkat</td>
-                                            <td class="value">: {{ $item->anggota->pangkat }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Jabatan</td>
-                                            <td class="value">: {{ $item->anggota->jabatan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Bidang</td>
-                                            <td class="value">: {{ $item->anggota->bidang }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Gaji</td>
-                                            <td class="value">: {{ 'Rp ' . number_format($item->anggota->gaji, 0, ',', '.') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label">Alamat</td>
-                                            <td class="value">: {{ $item->anggota->alamat }}</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </td>
+                    </th>
+                    <td class="">
+                        <div class="">
+                            <table class="data-table">
+                                <tr>
+                                    <td class="label">Nama</td>
+                                    <td class="value">: {{ $item->anggota->user->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">NIP</td>
+                                    <td class="value">: {{ $item->anggota->nip }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Pangkat</td>
+                                    <td class="value">: {{ $item->anggota->pangkat }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Jabatan</td>
+                                    <td class="value">: {{ $item->anggota->jabatan }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Bidang</td>
+                                    <td class="value">: {{ $item->anggota->bidang }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Gaji</td>
+                                    <td class="value">: {{ 'Rp ' . number_format($item->anggota->gaji, 0, ',', '.') }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="label">Alamat</td>
+                                    <td class="value">: {{ $item->anggota->alamat }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
 
-                            <td class="px-6 py-4">
-                                {{ $item->tanggal_pinjaman }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $item->jangka_waktu }} bulan
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ 'Rp ' . number_format($item->jumlah_pinjaman, 0, ',', '.') }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $item->status }}
-                            </td>
+                    <td class="px-6 py-4">
+                        {{ $item->tanggal_pinjaman }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $item->jangka_waktu }} bulan
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ 'Rp ' . number_format($item->jumlah_pinjaman, 0, ',', '.') }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $item->status }}
+                    </td>
                     @endforeach
-                @endif
+                    @endif
 
             </tbody>
         </table>
