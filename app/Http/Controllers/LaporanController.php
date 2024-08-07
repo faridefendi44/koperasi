@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
+
     public function indexSimpanan(Request $request)
     {
         $bulan = $request->input('bulan');
@@ -23,7 +24,11 @@ class LaporanController extends Controller
         }
 
         $simpanans = $query->paginate(10);
-        return view('laporan.simpanan', compact('simpanans'));
+
+        $totalPinjaman = $bulan
+            ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
+            : Pinjaman::sum('jumlah_pinjaman');
+        return view('laporan.simpanan', compact('simpanans', 'totalPinjaman'));
     }
 
     public function downloadSimpananPdf(Request $request)
@@ -37,24 +42,42 @@ class LaporanController extends Controller
         $namaBulan = $bulan ? Carbon::create()->month($bulan)->locale('id')->monthName : null;
 
         $simpanans = $query->paginate(10);
-
-        $pdf = PDF::loadView('laporan.simpananPrint', compact('simpanans', 'namaBulan'));
+        $totalPinjaman = $bulan
+            ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
+            : Pinjaman::sum('jumlah_pinjaman');
+        $pdf = PDF::loadView('laporan.simpananPrint', compact('simpanans', 'namaBulan', 'totalPinjaman'));
         $pdf->setPaper('A4', 'Portrait');
         return $pdf->stream('Data Simpanan.pdf');
     }
+
+
     public function indexPinjaman(Request $request)
-    { {
-            $bulan = $request->input('bulan');
-            $query = Pinjaman::query();
+    {
+        $bulan = $request->input('bulan');
+        $query = Pinjaman::query();
 
-            if ($bulan) {
-                $query->whereMonth('tanggal_pinjaman', $bulan);
-            }
-
-            $pinjamans = $query->paginate(10);
-            return view('laporan.pinjaman', compact('pinjamans'));
+        if ($bulan) {
+            $query->whereMonth('tanggal_pinjaman', $bulan);
         }
+
+        $pinjamans = $query->paginate(10);
+        $totalPinjaman = $bulan
+            ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
+            : Pinjaman::sum('jumlah_pinjaman');
+        $totalSimpananWajib = $bulan
+            ? Simpanan::whereMonth('tanggal_simpanan', $bulan)->sum('simpanan_wajib')
+            : Simpanan::sum('simpanan_wajib');
+        $totalSimpananPokok = $bulan
+            ? Anggota::join('simpanans', 'anggotas.id', '=', 'simpanans.id_anggota')
+            ->whereMonth('simpanans.tanggal_simpanan', $bulan)
+            ->sum('anggotas.simpanan')
+            : Anggota::sum('simpanan');
+        $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
+
+        return view('laporan.pinjaman', compact('pinjamans', 'totalPinjaman', 'totalSimpanan'));
     }
+
+
     public function downloadPinjamanPdf(Request $request)
     {
         $bulan = $request->input('bulan');
@@ -66,8 +89,20 @@ class LaporanController extends Controller
         $namaBulan = $bulan ? Carbon::create()->month($bulan)->locale('id')->monthName : null;
 
         $pinjamans = $query->paginate(10);
+        $totalPinjaman = $bulan
+            ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
+            : Pinjaman::sum('jumlah_pinjaman');
+        $totalSimpananWajib = $bulan
+            ? Simpanan::whereMonth('tanggal_simpanan', $bulan)->sum('simpanan_wajib')
+            : Simpanan::sum('simpanan_wajib');
+        $totalSimpananPokok = $bulan
+            ? Anggota::join('simpanans', 'anggotas.id', '=', 'simpanans.id_anggota')
+            ->whereMonth('simpanans.tanggal_simpanan', $bulan)
+            ->sum('anggotas.simpanan')
+            : Anggota::sum('simpanan');
+        $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
 
-        $pdf = PDF::loadView('laporan.pinjamanPrint', compact('pinjamans', 'namaBulan'));
+        $pdf = PDF::loadView('laporan.pinjamanPrint', compact('pinjamans', 'namaBulan','totalSimpanan', 'totalPinjaman'));
         $pdf->setPaper('A4', 'Portrait');
         return $pdf->stream('Data Pinjaman.pdf');
     }
@@ -81,7 +116,6 @@ class LaporanController extends Controller
         } else {
             $pinjaman = Pinjaman::with('angsuran')->get();
             $jumlahAnggota = Anggota::count();
-
         }
         $totalBunga = $pinjaman->flatMap(function ($pinjaman) {
             return $pinjaman->angsuran;

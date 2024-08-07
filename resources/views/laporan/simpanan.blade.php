@@ -99,11 +99,22 @@
                             </tr>
                         @endforeach
                         <tr class="bg-[#D9D9D9] border-t font-bold">
-                            <td colspan="3" class="px-6 py-4 text-right">Total</td>
+                            <td  class="px-6 py-4"></td>
+                            <td  class="px-6 py-4">Total</td>
+                            <td  class="px-6 py-4 text-right"></td>
                             <td class="px-6 py-4">{{ 'Rp ' . number_format($totalPokok, 0, ',', '.') }}</td>
                             <td class="px-6 py-4">{{ 'Rp ' . number_format($totalWajib, 0, ',', '.') }}</td>
                             <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSemua, 0, ',', '.') }}</td>
                         </tr>
+                        <tr class="bg-[#D9D9D9] border-t font-bold">
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td  class="px-6 py-4 ">Total Kas Saldo</td>
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSemua - $totalPinjaman, 0, ',', '.') }}</td>
+                        </tr>
+
                     @endif
                 </tbody>
             </table>

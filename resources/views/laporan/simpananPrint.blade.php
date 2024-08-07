@@ -42,12 +42,13 @@
             border: none;
         }
 
+
+
         .signature {
-            width: 90%;
-            margin-top: 50px;
-            text-align: right;
-            position: relative;
+            width: 100%;
+            text-align: center;
             page-break-inside: avoid;
+
         }
 
         .signature p {
@@ -55,12 +56,14 @@
             line-height: 1.5;
         }
 
-        .signature .date {
-            text-align: right;
-        }
-
         .signature .name {
             margin-top: 80px;
+        }
+
+
+
+        .signature .date {
+            margin-right: 25px;
             text-align: right;
         }
 
@@ -138,7 +141,7 @@
                     <th scope="col" class="px-6 py-3">Data Anggota</th>
                     <th scope="col" class="px-6 py-3">Tanggal Simpanan</th>
                     <th scope="col" class="px-6 py-3">Simpanan Pokok</th>
-                    <th scope="col" class="px-6 py-3">Simpanan Wajib</th>
+                    <th scope="col" class="px-3 py-3">Simpanan Wajib</th>
                     <th scope="col" class="px-6 py-3">Total</th>
                 </tr>
             </thead>
@@ -159,7 +162,9 @@
                             if (!$anggota) {
                                 continue;
                             }
-                            $totalSimpananWajib = $simpanans->where('id_anggota', $item->id_anggota)->sum('simpanan_wajib');
+                            $totalSimpananWajib = $simpanans
+                                ->where('id_anggota', $item->id_anggota)
+                                ->sum('simpanan_wajib');
                             $simpananPokok = $anggota->simpanan;
                             $totalSimpanan = $anggota->simpanan + $totalSimpananWajib;
 
@@ -168,7 +173,8 @@
                             $totalSemua += $totalSimpanan;
                         @endphp
                         <tr class="bg-[#D9D9D9] border-b">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $loop->iteration }}
                             </th>
                             <td class="px-6 py-4">{{ $anggota->nip }} - {{ $anggota->user->name }}</td>
@@ -194,16 +200,36 @@
                         <td class="px-6 py-4">{{ 'Rp ' . number_format($totalWajib, 0, ',', '.') }}</td>
                         <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSemua, 0, ',', '.') }}</td>
                     </tr>
+                    <tr class="bg-[#D9D9D9] border-t font-bold">
+                        <td colspan="5" class="px-6 py-4">Total Kas Saldo</td>
+                        <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSemua - $totalPinjaman, 0, ',', '.') }}
+                        </td>
+                    </tr>
                 @endif
             </tbody>
         </table>
     </div>
 
-    <div class="signature">
-        <p class="date">Payakumbuh, {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
-        <p>BENDAHARA</p>
-        <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
-    </div>
+
+
+    <table style="margin-top: 40px; border-collapse: collapse; border: none;" class="signature">
+        <tr>
+            <td style="border: none;">
+                <p >Mengetahui,</p>
+                <p>Ketua Koperasi KPN Kejari Payakumbuh</p>
+                <p class="name"><strong><u>(Yeni Firma Sutyani, S. H)</u></strong></p>
+                <p><strong>NIP. 19750601 200012 2002</strong></p>
+            </td>
+            <td style="border: none;">
+                <p class="date">Payakumbuh,
+                    {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+                <p>BENDAHARA</p>
+                <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
+            </td>
+        </tr>
+    </table>
+
+
 
 </body>
 

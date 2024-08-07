@@ -84,10 +84,9 @@
 
         .signature {
             width: 100%;
-            margin-top: 50px;
-            text-align: right;
-            position: relative;
+            text-align: center;
             page-break-inside: avoid;
+
         }
 
         .signature p {
@@ -95,12 +94,14 @@
             line-height: 1.5;
         }
 
-        .signature .date {
-            text-align: right;
-        }
-
         .signature .name {
             margin-top: 80px;
+        }
+
+
+
+        .signature .date {
+            margin-right: 25px;
             text-align: right;
         }
 
@@ -256,17 +257,36 @@
                         {{ $item->status }}
                     </td>
                     @endforeach
+                    <tr class="bg-[#D9D9D9] border-t font-bold">
+                        <td  class="px-6 py-4 text-right"></td>
+                        <td  class="px-6 py-4 ">Total Kas Saldo</td>
+                        <td  class="px-6 py-4 text-right"></td>
+                        <td  class="px-6 py-4 text-right"></td>
+                        <td  class="px-6 py-4 text-right"></td>
+                        <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSimpanan - $totalPinjaman, 0, ',', '.') }}</td>
+                    </tr>
                     @endif
 
             </tbody>
         </table>
     </div>
 
-    <div class="signature">
-        <p class="date">Payakumbuh, {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
-        <p>BENDAHARA</p>
-        <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
-    </div>
+    <table style="margin-top: 40px; border-collapse: collapse; border: none;" class="signature">
+        <tr>
+            <td style="border: none;">
+                <p >Mengetahui,</p>
+                <p>Ketua Koperasi KPN Kejari Payakumbuh</p>
+                <p class="name"><strong><u>(Yeni Firma Sutyani, S. H)</u></strong></p>
+                <p><strong>NIP. 19750601 200012 2002</strong></p>
+            </td>
+            <td style="border: none;">
+                <p class="date">Payakumbuh,
+                    {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+                <p>BENDAHARA</p>
+                <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
+            </td>
+        </tr>
+    </table>
 
 </body>
 

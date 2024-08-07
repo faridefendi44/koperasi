@@ -133,6 +133,14 @@
                                     {{ $item->status }}
                                 </td>
                         @endforeach
+                        <tr class="bg-[#D9D9D9] border-t font-bold">
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td  class="px-6 py-4 ">Total Kas Saldo</td>
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td  class="px-6 py-4 text-right"></td>
+                            <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSimpanan - $totalPinjaman, 0, ',', '.') }}</td>
+                        </tr>
                     @endif
 
                 </tbody>
