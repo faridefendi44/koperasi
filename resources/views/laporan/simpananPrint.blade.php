@@ -156,17 +156,32 @@
                         $totalPokok = 0;
                         $totalSemua = 0;
                     @endphp
+
                     @foreach ($simpanans->unique('id_anggota') as $item)
                         @php
                             $anggota = $item->anggota;
                             if (!$anggota) {
                                 continue;
                             }
+
+                            $simpananPertama = $anggota->simpanans()->orderBy('tanggal_simpanan')->first();
+                            $simpananPokok = 0;
+
+                            if ($simpananPertama) {
+                                $bulanSimpananPertama = \Carbon\Carbon::parse(
+                                    $simpananPertama->tanggal_simpanan,
+                                )->format('m');
+                                $bulanDipilih = str_pad((int) request('bulan'), 2, '0', STR_PAD_LEFT);
+
+                                if ($bulanSimpananPertama === $bulanDipilih) {
+                                    $simpananPokok = $anggota->simpanan;
+                                }
+                            }
+
                             $totalSimpananWajib = $simpanans
                                 ->where('id_anggota', $item->id_anggota)
                                 ->sum('simpanan_wajib');
-                            $simpananPokok = $anggota->simpanan;
-                            $totalSimpanan = $anggota->simpanan + $totalSimpananWajib;
+                            $totalSimpanan = $simpananPokok + $totalSimpananWajib;
 
                             $totalWajib += $totalSimpananWajib;
                             $totalPokok += $simpananPokok;
@@ -194,6 +209,8 @@
                             </td>
                         </tr>
                     @endforeach
+
+
                     <tr class="bg-[#D9D9D9] border-t font-bold">
                         <td colspan="3" class="px-6 py-4 text-right">Total</td>
                         <td class="px-6 py-4">{{ 'Rp ' . number_format($totalPokok, 0, ',', '.') }}</td>
@@ -215,14 +232,15 @@
     <table style="margin-top: 40px; border-collapse: collapse; border: none;" class="signature">
         <tr>
             <td style="border: none;">
-                <p >Mengetahui,</p>
+                <p>Mengetahui,</p>
                 <p>Ketua Koperasi KPN Kejari Payakumbuh</p>
                 <p class="name"><strong><u>(Yeni Firma Sutyani, S. H)</u></strong></p>
                 <p><strong>NIP. 19750601 200012 2002</strong></p>
             </td>
             <td style="border: none;">
                 <p class="date">Payakumbuh,
-                    {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}</p>
+                    {{ \Carbon\Carbon::now()->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY') }}
+                </p>
                 <p>BENDAHARA</p>
                 <p class="name"><strong><u>Ninit Sriaprila</u></strong></p>
             </td>

@@ -13,7 +13,6 @@ use Carbon\Carbon;
 
 class LaporanController extends Controller
 {
-
     public function indexSimpanan(Request $request)
     {
         $bulan = $request->input('bulan');
@@ -23,13 +22,16 @@ class LaporanController extends Controller
             $query->whereMonth('tanggal_simpanan', $bulan);
         }
 
-        $simpanans = $query->paginate(10);
+        $simpanans = $query->with('anggota')
+            ->paginate(10);
 
         $totalPinjaman = $bulan
             ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
             : Pinjaman::sum('jumlah_pinjaman');
+
         return view('laporan.simpanan', compact('simpanans', 'totalPinjaman'));
     }
+
 
     public function downloadSimpananPdf(Request $request)
     {
@@ -39,16 +41,16 @@ class LaporanController extends Controller
         if ($bulan) {
             $query->whereMonth('tanggal_simpanan', $bulan);
         }
-        $namaBulan = $bulan ? Carbon::create()->month($bulan)->locale('id')->monthName : null;
-
-        $simpanans = $query->paginate(10);
+        $simpanans = $query->with('anggota')->get();
         $totalPinjaman = $bulan
             ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
             : Pinjaman::sum('jumlah_pinjaman');
+        $namaBulan = $bulan ? Carbon::create()->month($bulan)->locale('id')->monthName : 'Semua Bulan';
         $pdf = PDF::loadView('laporan.simpananPrint', compact('simpanans', 'namaBulan', 'totalPinjaman'));
         $pdf->setPaper('A4', 'Portrait');
-        return $pdf->stream('Data Simpanan.pdf');
+        return $pdf->stream('Data_Simpanan.pdf');
     }
+
 
 
     public function indexPinjaman(Request $request)
@@ -102,7 +104,7 @@ class LaporanController extends Controller
             : Anggota::sum('simpanan');
         $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
 
-        $pdf = PDF::loadView('laporan.pinjamanPrint', compact('pinjamans', 'namaBulan','totalSimpanan', 'totalPinjaman'));
+        $pdf = PDF::loadView('laporan.pinjamanPrint', compact('pinjamans', 'namaBulan', 'totalSimpanan', 'totalPinjaman'));
         $pdf->setPaper('A4', 'Portrait');
         return $pdf->stream('Data Pinjaman.pdf');
     }
