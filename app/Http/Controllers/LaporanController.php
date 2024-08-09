@@ -53,6 +53,32 @@ class LaporanController extends Controller
 
 
 
+    // public function indexPinjaman(Request $request)
+    // {
+    //     $bulan = $request->input('bulan');
+    //     $query = Pinjaman::query();
+
+    //     if ($bulan) {
+    //         $query->whereMonth('tanggal_pinjaman', $bulan);
+    //     }
+
+    //     $pinjamans = $query->paginate(10);
+    //     $totalPinjaman = $bulan
+    //         ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
+    //         : Pinjaman::sum('jumlah_pinjaman');
+    //     $totalSimpananWajib = $bulan
+    //         ? Simpanan::whereMonth('tanggal_simpanan', $bulan)->sum('simpanan_wajib')
+    //         : Simpanan::sum('simpanan_wajib');
+    //     $totalSimpananPokok = $bulan
+    //         ? Anggota::join('simpanans', 'anggotas.id', '=', 'simpanans.id_anggota')
+    //         ->whereMonth('simpanans.tanggal_simpanan', $bulan)
+    //         ->sum('anggotas.simpanan')
+    //         : Anggota::sum('simpanan');
+    //     $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
+
+    //     return view('laporan.pinjaman', compact('pinjamans', 'totalPinjaman', 'totalSimpanan'));
+    // }
+
     public function indexPinjaman(Request $request)
     {
         $bulan = $request->input('bulan');
@@ -63,51 +89,96 @@ class LaporanController extends Controller
         }
 
         $pinjamans = $query->paginate(10);
+
+        // Total pinjaman berdasarkan bulan
         $totalPinjaman = $bulan
             ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
             : Pinjaman::sum('jumlah_pinjaman');
+
+        // Total simpanan wajib
         $totalSimpananWajib = $bulan
             ? Simpanan::whereMonth('tanggal_simpanan', $bulan)->sum('simpanan_wajib')
             : Simpanan::sum('simpanan_wajib');
-        $totalSimpananPokok = $bulan
-            ? Anggota::join('simpanans', 'anggotas.id', '=', 'simpanans.id_anggota')
-            ->whereMonth('simpanans.tanggal_simpanan', $bulan)
-            ->sum('anggotas.simpanan')
-            : Anggota::sum('simpanan');
+
+        // Mengambil simpanan pokok pertama untuk setiap anggota
+        $anggotaIds = Anggota::pluck('id'); // Ambil semua ID anggota
+        $simpananPertama = Simpanan::whereIn('id_anggota', $anggotaIds)
+            ->orderBy('tanggal_simpanan', 'asc')
+            ->get()
+            ->groupBy('id_anggota')
+            ->map(function ($group) {
+                return $group->first();
+            });
+
+        // Menghitung total simpanan pokok berdasarkan bulan yang dipilih
+        $totalSimpananPokok = 0;
+        foreach ($simpananPertama as $simpanan) {
+            $bulanSimpanan = \Carbon\Carbon::parse($simpanan->tanggal_simpanan)->month;
+            if (!$bulan || $bulanSimpanan == $bulan) {
+                $anggota = $simpanan->anggota;
+                $totalSimpananPokok += $anggota->simpanan;
+            }
+        }
+
         $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
 
         return view('laporan.pinjaman', compact('pinjamans', 'totalPinjaman', 'totalSimpanan'));
     }
 
 
+
+
+
     public function downloadPinjamanPdf(Request $request)
-    {
-        $bulan = $request->input('bulan');
-        $query = Pinjaman::query();
+{
+    $bulan = $request->input('bulan');
+    $query = Pinjaman::query();
 
-        if ($bulan) {
-            $query->whereMonth('tanggal_pinjaman', $bulan);
-        }
-        $namaBulan = $bulan ? Carbon::create()->month($bulan)->locale('id')->monthName : null;
-
-        $pinjamans = $query->paginate(10);
-        $totalPinjaman = $bulan
-            ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
-            : Pinjaman::sum('jumlah_pinjaman');
-        $totalSimpananWajib = $bulan
-            ? Simpanan::whereMonth('tanggal_simpanan', $bulan)->sum('simpanan_wajib')
-            : Simpanan::sum('simpanan_wajib');
-        $totalSimpananPokok = $bulan
-            ? Anggota::join('simpanans', 'anggotas.id', '=', 'simpanans.id_anggota')
-            ->whereMonth('simpanans.tanggal_simpanan', $bulan)
-            ->sum('anggotas.simpanan')
-            : Anggota::sum('simpanan');
-        $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
-
-        $pdf = PDF::loadView('laporan.pinjamanPrint', compact('pinjamans', 'namaBulan', 'totalSimpanan', 'totalPinjaman'));
-        $pdf->setPaper('A4', 'Portrait');
-        return $pdf->stream('Data Pinjaman.pdf');
+    if ($bulan) {
+        $query->whereMonth('tanggal_pinjaman', $bulan);
     }
+
+    $namaBulan = $bulan ? Carbon::create()->month($bulan)->locale('id')->monthName : null;
+
+    $pinjamans = $query->paginate(10);
+
+    // Total pinjaman berdasarkan bulan
+    $totalPinjaman = $bulan
+        ? Pinjaman::whereMonth('tanggal_pinjaman', $bulan)->sum('jumlah_pinjaman')
+        : Pinjaman::sum('jumlah_pinjaman');
+
+    // Total simpanan wajib
+    $totalSimpananWajib = $bulan
+        ? Simpanan::whereMonth('tanggal_simpanan', $bulan)->sum('simpanan_wajib')
+        : Simpanan::sum('simpanan_wajib');
+
+    // Mengambil simpanan pokok pertama untuk setiap anggota
+    $anggotaIds = Anggota::pluck('id'); // Ambil semua ID anggota
+    $simpananPertama = Simpanan::whereIn('id_anggota', $anggotaIds)
+        ->orderBy('tanggal_simpanan', 'asc')
+        ->get()
+        ->groupBy('id_anggota')
+        ->map(function ($group) {
+            return $group->first();
+        });
+
+    // Menghitung total simpanan pokok berdasarkan bulan yang dipilih
+    $totalSimpananPokok = 0;
+    foreach ($simpananPertama as $simpanan) {
+        $bulanSimpanan = \Carbon\Carbon::parse($simpanan->tanggal_simpanan)->month;
+        if (!$bulan || $bulanSimpanan == $bulan) {
+            $anggota = $simpanan->anggota;
+            $totalSimpananPokok += $anggota->simpanan;
+        }
+    }
+
+    $totalSimpanan = $totalSimpananWajib + $totalSimpananPokok;
+
+    $pdf = PDF::loadView('laporan.pinjamanPrint', compact('pinjamans', 'namaBulan', 'totalSimpanan', 'totalPinjaman'));
+    $pdf->setPaper('A4', 'Portrait');
+    return $pdf->stream('Data Pinjaman.pdf');
+}
+
     public function indexSHU(Request $request)
     {
         $tahun = $request->input('tahun');
