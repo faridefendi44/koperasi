@@ -62,70 +62,7 @@
                         <th scope="col" class="px-6 py-3">Total</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
-                    @if ($simpanans->isEmpty())
-                        <tr>
-                            <td colspan="7" class="text-center py-4">Tidak ada data simpanan yang tersedia.</td>
-                        </tr>
-                    @else
-                        @php
-                            $totalWajib = 0;
-                            $totalPokok = 0;
-                            $totalSemua = 0;
-                        @endphp
-                        @foreach ($simpanans->unique('id_anggota') as $item)
-                            @php
-                                $anggota = $item->anggota;
-                                if (!$anggota) {
-                                    continue;
-                                }
-                                $totalSimpananWajib = $simpanans->where('id_anggota', $item->id_anggota)->sum('simpanan_wajib');
-                                $simpananPokok = $anggota->simpanan;
-                                $totalSimpanan = $anggota->simpanan + $totalSimpananWajib;
-                                $totalWajib += $totalSimpananWajib;
-                                $totalPokok += $simpananPokok;
-                                $totalSemua += $totalSimpanan;
-                            @endphp
-                            <tr class="bg-[#D9D9D9] border-b">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $loop->iteration }}
-                                </th>
-                                <td class="px-6 py-4">{{ $anggota->nip }} - {{ $anggota->user->name }}</td>
-                                <td class="px-6 py-4">
-                                    @foreach ($simpanans->where('id_anggota', $item->id_anggota) as $simpanan)
-                                        {{ $simpanan->tanggal_simpanan }}<br>
-                                    @endforeach
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($anggota->simpanan, 0, ',', '.') }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($totalSimpananWajib, 0, ',', '.') }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($totalSimpanan, 0, ',', '.') }}
-                                </td>
-                            </tr>
-                        @endforeach
-                        <tr class="bg-[#D9D9D9] border-t font-bold">
-                            <td  class="px-6 py-4"></td>
-                            <td  class="px-6 py-4">Total</td>
-                            <td  class="px-6 py-4 text-right"></td>
-                            <td class="px-6 py-4">{{ 'Rp ' . number_format($totalPokok, 0, ',', '.') }}</td>
-                            <td class="px-6 py-4">{{ 'Rp ' . number_format($totalWajib, 0, ',', '.') }}</td>
-                            <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSemua, 0, ',', '.') }}</td>
-                        </tr>
-                        <tr class="bg-[#D9D9D9] border-t font-bold">
-                            <td  class="px-6 py-4 text-right"></td>
-                            <td  class="px-6 py-4 ">Total Kas Saldo</td>
-                            <td  class="px-6 py-4 text-right"></td>
-                            <td  class="px-6 py-4 text-right"></td>
-                            <td  class="px-6 py-4 text-right"></td>
-                            <td class="px-6 py-4">{{ 'Rp ' . number_format($totalSemua - $totalPinjaman, 0, ',', '.') }}</td>
-                        </tr>
 
-                    @endif
-                </tbody> --}}
 
                 <tbody>
                     @if ($simpanans->isEmpty())
@@ -138,56 +75,7 @@
                             $totalPokok = 0;
                             $totalSemua = 0;
                         @endphp
-                        {{-- @foreach ($simpanans->unique('id_anggota') as $item)
-                            @php
-                                $anggota = $item->anggota;
-                                if (!$anggota) {
-                                    continue;
-                                }
-                                $simpananPertama = $anggota->simpanans()->orderBy('tanggal_simpanan')->first();
-                                $simpananPokok = 0;
-                                if ($simpananPertama) {
-                                    $bulanSimpananPertama = \Carbon\Carbon::parse(
-                                        $simpananPertama->tanggal_simpanan,
-                                    )->format('m');
-                                    $bulanDipilih = str_pad((int) request('bulan'), 2, '0', STR_PAD_LEFT);
-
-                                    if ($bulanSimpananPertama === $bulanDipilih) {
-                                        $simpananPokok = $anggota->simpanan;
-                                    }
-                                }
-
-                                $totalSimpananWajib = $simpanans
-                                    ->where('id_anggota', $item->id_anggota)
-                                    ->sum('simpanan_wajib');
-                                $totalSimpanan = $simpananPokok + $totalSimpananWajib;
-
-                                $totalWajib += $totalSimpananWajib;
-                                $totalPokok += $simpananPokok;
-                                $totalSemua += $totalSimpanan;
-                            @endphp
-                            <tr class="bg-[#D9D9D9] border-b">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $loop->iteration }}
-                                </th>
-                                <td class="px-6 py-4">{{ $anggota->nip }} - {{ $anggota->user->name }}</td>
-                                <td class="px-6 py-4">
-                                    @foreach ($simpanans->where('id_anggota', $item->id_anggota) as $simpanan)
-                                        {{ $simpanan->tanggal_simpanan }}<br>
-                                    @endforeach
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($simpananPokok, 0, ',', '.') }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($totalSimpananWajib, 0, ',', '.') }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    {{ 'Rp ' . number_format($totalSimpanan, 0, ',', '.') }}
-                                </td>
-                            </tr>
-                        @endforeach --}}
+                       
 
                         @foreach ($simpanans->unique('id_anggota') as $item)
                             @php
